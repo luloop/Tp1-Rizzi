@@ -1,0 +1,94 @@
+# depslib dependency file v1.0
+1522535688 source:c:\users\lucil\desktop\programacion-1-lab-1\tpnro1-rizzi\tp1-rizzi\operaciones.c
+
+1522413339 source:c:\users\lucil\desktop\programacion-1-lab-1\tpnro1-rizzi\tp1-rizzi\pedirnumeros.c
+	"PedirNumeros.h"
+	<stdio.h>
+	"validaciones.h"
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+
+1522413339 c:\users\lucil\desktop\programacion-1-lab-1\tpnro1-rizzi\tp1-rizzi\pedirnumeros.h
+
+1522553328 source:c:\users\lucil\desktop\programacion-1-lab-1\tpnro1-rizzi\tp1-rizzi\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+	"PedirNumeros.h"
+	"operaciones.h"
+
+1522535912 source:c:\users\lucil\desktop\programacion-1-lab-1\tpnro1-rizzi\tp1-rizzi\validaciones.c
+	<stdio.h>
+	<stdlib.h>
+	"PedirNumeros.h"
+	<conio.h>
+	<ctype.h>
+
+1522533916 c:\users\lucil\desktop\programacion-1-lab-1\tpnro1-rizzi\tp1-rizzi\validaciones.h
+
+1522535636 c:\users\lucil\desktop\programacion-1-lab-1\tpnro1-rizzi\tp1-rizzi\operaciones.h
+
+1522698170 source:c:\users\lucil\dropbox\programacion_1_laboratorio_1\01-tp1-rizzi\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+	"PedirNumeros.h"
+	"operaciones.h"
+
+1522413339 c:\users\lucil\dropbox\programacion_1_laboratorio_1\01-tp1-rizzi\pedirnumeros.h
+
+1522535636 c:\users\lucil\dropbox\programacion_1_laboratorio_1\01-tp1-rizzi\operaciones.h
+
+1522535688 source:c:\users\lucil\dropbox\programacion_1_laboratorio_1\01-tp1-rizzi\operaciones.c
+
+1522413339 source:c:\users\lucil\dropbox\programacion_1_laboratorio_1\01-tp1-rizzi\pedirnumeros.c
+	"PedirNumeros.h"
+	<stdio.h>
+	"validaciones.h"
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+
+1522698109 c:\users\lucil\dropbox\programacion_1_laboratorio_1\01-tp1-rizzi\validaciones.h
+
+1522698109 source:c:\users\lucil\dropbox\programacion_1_laboratorio_1\01-tp1-rizzi\validaciones.c
+	<stdio.h>
+	<stdlib.h>
+	"PedirNumeros.h"
+	<conio.h>
+	<ctype.h>
+
+1522698282 source:f:\01-tp1-rizzi\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+	"PedirNumeros.h"
+	"operaciones.h"
+
+1522413340 f:\01-tp1-rizzi\pedirnumeros.h
+
+1522535638 f:\01-tp1-rizzi\operaciones.h
+
+1522535690 source:f:\01-tp1-rizzi\operaciones.c
+
+1522413340 source:f:\01-tp1-rizzi\pedirnumeros.c
+	"PedirNumeros.h"
+	<stdio.h>
+	"validaciones.h"
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+
+1522698110 f:\01-tp1-rizzi\validaciones.h
+
+1522698110 source:f:\01-tp1-rizzi\validaciones.c
+	<stdio.h>
+	<stdlib.h>
+	"PedirNumeros.h"
+	<conio.h>
+	<ctype.h>
+
