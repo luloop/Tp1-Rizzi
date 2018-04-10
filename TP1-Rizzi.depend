@@ -61,34 +61,36 @@
 	<conio.h>
 	<ctype.h>
 
-1522698282 source:f:\01-tp1-rizzi\main.c
+1523386180 source:f:\01-tp1-rizzi\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
 	<ctype.h>
-	"PedirNumeros.h"
-	"operaciones.h"
+	"funciones.h"
 
-1522413340 f:\01-tp1-rizzi\pedirnumeros.h
+1523384004 f:\01-tp1-rizzi\pedirnumeros.h
 
 1522535638 f:\01-tp1-rizzi\operaciones.h
 
-1522535690 source:f:\01-tp1-rizzi\operaciones.c
+1523383560 source:f:\01-tp1-rizzi\operaciones.c
 
-1522413340 source:f:\01-tp1-rizzi\pedirnumeros.c
-	"PedirNumeros.h"
-	<stdio.h>
-	"validaciones.h"
-	<stdlib.h>
-	<conio.h>
-	<ctype.h>
+1523384092 source:f:\01-tp1-rizzi\pedirnumeros.c
 
 1522698110 f:\01-tp1-rizzi\validaciones.h
 
-1522698110 source:f:\01-tp1-rizzi\validaciones.c
+1523383484 source:f:\01-tp1-rizzi\validaciones.c
 	<stdio.h>
 	<stdlib.h>
 	"PedirNumeros.h"
+	<conio.h>
+	<ctype.h>
+
+1523386248 f:\01-tp1-rizzi\funciones.h
+
+1523386162 source:f:\01-tp1-rizzi\funciones.c
+	"funciones.h"
+	<stdio.h>
+	<stdlib.h>
 	<conio.h>
 	<ctype.h>
 
