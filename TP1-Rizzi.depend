@@ -61,7 +61,7 @@
 	<conio.h>
 	<ctype.h>
 
-1523386180 source:f:\01-tp1-rizzi\main.c
+1523389834 source:f:\01-tp1-rizzi\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -85,9 +85,9 @@
 	<conio.h>
 	<ctype.h>
 
-1523386248 f:\01-tp1-rizzi\funciones.h
+1523390142 f:\01-tp1-rizzi\funciones.h
 
-1523386162 source:f:\01-tp1-rizzi\funciones.c
+1523390156 source:f:\01-tp1-rizzi\funciones.c
 	"funciones.h"
 	<stdio.h>
 	<stdlib.h>

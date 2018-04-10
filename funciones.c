@@ -64,7 +64,7 @@ char pedirCaracter (char texto[], char min, char max)
 
     }
 
-    /** \brief PEDIR UNA OPERACION
+/** \brief PEDIR UNA OPERACION
  *\param TEXTO
  * \param OPERACION 1
  * \param  OPERACION 2
@@ -219,14 +219,12 @@ char validarEntre2Datos(char dato, char op1,char op2)
     }
 
 /** \brief VALIDAR FLAG
- *
  * \param flag 1
- * \param flag 2
  * \return CARGA DE DATOS EN VARIBLAES OPERADORES
  *
  */
 
-int validarFlags (int bandera1, float operando1,char texto[])
+float validarFlags (int bandera1, float operando1,char texto[])
  {
      if (bandera1==0)
      {
@@ -334,8 +332,8 @@ int validarFlags (int bandera1, float operando1,char texto[])
 
 void informarOperadores (float op1, float op2)
 {
-    printf("\n===============================\n EL PRIMERO OPERANDO ES: %.2f \n ",op1);
-    printf("EL SEGUNDO OPERANDO ES: %.2f \n ==============================\n ",op2);
+    printf("\n===================================\n EL PRIMERO OPERANDO ES: %.2f \n ",op1);
+    printf("EL SEGUNDO OPERANDO ES: %.2f \n==================================\n ",op2);
 }
 
 
@@ -351,7 +349,7 @@ float facto;
     suma= sumar(primerOperando,segundooperando);
     divi=dividir(primerOperando,segundooperando);
     rest=restar(primerOperando,segundooperando);
-    facto=factorial(primerOperando);
+    facto=factorial((int)primerOperando);
 
      if (segundooperando==0)
         {
@@ -361,4 +359,24 @@ float facto;
         {
         printf("\n La suma es:\t \t  %.2f \n La resta es:\t \t  %.2f \n La division es:\t  %.2f \n La multiplicacion es:\t  %.2f \n El factorial es:\t  %.2f \n \n", suma,rest,divi,multi,facto);
         }
+}
+
+
+int ingresarMenu (void)
+{ int opcion;
+        printf("\n1- Ingresar 1er operando (A=x)\n");
+        printf("2- Ingresar 2do operando (B=y)\n");
+        printf("3- Calcular la suma (A+B)\n");
+        printf("4- Calcular la resta (A-B)\n");
+        printf("5- Calcular la division (A/B)\n");
+        printf("6- Calcular la multiplicacion (A*B)\n");
+        printf("7- Calcular el factorial (A!)\n");
+        printf("8- Calcular todas las operacione\n");
+        printf("9- Salir\n");
+
+        printf(" \n \t Ingrese la opcion elegida: \t");
+
+        scanf("%d",&opcion);
+
+        return opcion;
 }

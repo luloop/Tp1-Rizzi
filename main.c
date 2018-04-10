@@ -14,40 +14,19 @@ int main()
     int flag1=0;
     int flag2=0;
 
-   /* float suma;
-    float divi;
-    float multi;
-    float rest;
-    float facto;*/
-
-
     while(seguir=='s')
     {
-        printf("\n1- Ingresar 1er operando (A=x)\n");
-        printf("2- Ingresar 2do operando (B=y)\n");
-        printf("3- Calcular la suma (A+B)\n");
-        printf("4- Calcular la resta (A-B)\n");
-        printf("5- Calcular la division (A/B)\n");
-        printf("6- Calcular la multiplicacion (A*B)\n");
-        printf("7- Calcular el factorial (A!)\n");
-        printf("8- Calcular todas las operacione\n");
-        printf("9- Salir\n");
-
-        printf(" \n \t Ingrese la opcion elegida: \t");
-
-        scanf("%d",&opcion);
+        opcion = ingresarMenu();
 
         switch(opcion)
         {
             case 1:
-                    primerOperando=pedirEnteroSintope(" \n==========================================\n Ingrese el Primero Operando: \t ");
-                    printf("==========================================\n");
+                    primerOperando=pedirEnteroSintope(" \n=============================\n Ingrese el Primero Operando: \t ");
                     flag1=1;
                     break;
 
             case 2:
-                    segundooperando=pedirEnteroSintope(" \n ==========================================\n Ingrese el Segundo Operando: \t ");
-                    printf("==========================================\n");
+                    segundooperando=pedirEnteroSintope(" \n=============================\n Ingrese el Segundo Operando: \t ");
                     flag2=1;
                     break;
 
@@ -103,9 +82,12 @@ int main()
 
                    primerOperando= validarFlags(flag1, primerOperando," \n \t Ingrese el primer operando: \t");
                    flag1=1;
-                   operacion=factorial(primerOperando);
 
-                   printf("\t \t El factorial es:  \t %.2f \n \n", operacion);
+                   printf("=======================\nPARA EL OPERANDO: %d \n",(int)primerOperando);
+                   printf("=======================\n");
+                   operacion=factorial((int)primerOperando);
+
+                   printf("\t \t El factorial es:  \t %.0f \n \n", operacion);
                    break;
 
             case 8:
@@ -116,19 +98,16 @@ int main()
 
                   informarOperadores(primerOperando, segundooperando);
                   calcularTodasOperaciones(primerOperando,segundooperando);
+                  break;
 
             case 9:
                 seguir = 'n';
                 break;
-
-                printf("\n");
-                system("pause");
-                system ("cls");
-
-
         }
 
-
+        printf("\n");
+        system("pause");
+        system ("cls");
 }
 
     return 0;

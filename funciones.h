@@ -124,7 +124,7 @@ char validarEntre2Datos(char dato, char op1,char op2);
  *
  */
 
-int validarFlags (int bandera1, float operando1,char texto[]);
+float validarFlags (int bandera1, float operando1,char texto[]);
 
 
 /////////////////////////////OPERACIONES////////////////////////////
@@ -195,5 +195,15 @@ int validarFlags (int bandera1, float operando1,char texto[]);
   * \return VOID
   */
   void calcularTodasOperaciones (float , float);
+
+  /** \brief INGRESAR MENU
+   *
+   * \param
+   * \param
+   * \return
+   *
+   */
+
+    int ingresarMenu (void);
 
 

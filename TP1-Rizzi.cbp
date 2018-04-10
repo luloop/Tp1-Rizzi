@@ -31,10 +31,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="PedirNumeros.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="PedirNumeros.h" />
 		<Unit filename="funciones.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -42,14 +38,6 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="operaciones.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="operaciones.h" />
-		<Unit filename="validaciones.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="validaciones.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
