@@ -6,7 +6,7 @@
 
 int main()
 {
-    char seguir='s';
+    int seguir=0;
     int opcion=0;
     float primerOperando;
     float segundooperando;
@@ -14,7 +14,7 @@ int main()
     int flag1=0;
     int flag2=0;
 
-    while(seguir=='s')
+    while(seguir==0)
     {
         opcion = ingresarMenu();
 
@@ -56,14 +56,14 @@ int main()
                     segundooperando=validarFlags(flag2,segundooperando , "\n \t Ingrese el segundo operando: \t");
                     if (segundooperando==0)
                     {
-                    informarOperadores(primerOperando, segundooperando);
-                    printf("La Division no se puede realizar \n \n");
+                        informarOperadores(primerOperando, segundooperando);
+                        printf("La Division no se puede realizar \n \n");
                     }
                     else
                     {
-                    operacion=dividir(primerOperando,segundooperando);
-                    informarOperadores(primerOperando, segundooperando);
-                    printf("La Division es  \t %.2f \t \n \n \n", operacion);
+                        operacion=dividir(primerOperando,segundooperando);
+                        informarOperadores(primerOperando, segundooperando);
+                        printf("La Division es  \t %.2f \t \n \n \n", operacion);
                     }
                     break;
 
@@ -101,8 +101,8 @@ int main()
                   break;
 
             case 9:
-                seguir = 'n';
-                break;
+                  seguir = 1;
+                  break;
         }
 
         printf("\n");
