@@ -94,3 +94,19 @@
 	<conio.h>
 	<ctype.h>
 
+1523533243 source:c:\test\rizzi\github-rizzi\tp1-rizzi\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+	"funciones.h"
+
+1523532371 c:\test\rizzi\github-rizzi\tp1-rizzi\funciones.h
+
+1523533936 source:c:\test\rizzi\github-rizzi\tp1-rizzi\funciones.c
+	"funciones.h"
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+

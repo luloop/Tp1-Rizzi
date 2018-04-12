@@ -16,6 +16,7 @@
     float numero;
     printf("%s",texto); // se adapta al texto del mail
     scanf("%f", &numero);
+
     return numero;
 }
 
@@ -187,7 +188,7 @@ int ingresarMenu (void)
         printf("9- Salir\n");
 
         printf(" \n \t Reingrese la opcion elegida: \t");
-
+        fflush(stdin);
         scanf("%d",&opcion);
         }
 
