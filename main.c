@@ -6,7 +6,7 @@
 *                                                       *
 *                                                       *
 *                                                       *
-* Version: 6                                            *
+* Version: 7                                            *
 * Autor: Lucila Rizzi                                   *
 *                                                       *
 ********************************************************/
@@ -33,68 +33,51 @@ int main()
         switch(opcion)
         {
             case 1:
-                    primerOperando=pedirEnteroSintope(" \n=============================\n Ingrese el Primero Operando: \t ");
+                    primerOperando=pedirEnteroSintope("Ingrese el Primero Operando: \t ");
                     flag1=1;
                     break;
             case 2:
-                    segundooperando=pedirEnteroSintope(" \n=============================\n Ingrese el Segundo Operando: \t ");
+                    segundooperando=pedirEnteroSintope("Ingrese el Segundo Operando: \t ");
                     flag2=1;
                     break;
             case 3:
-                    primerOperando= validarFlags(flag1, primerOperando ,"\n \t Ingrese el primer operando: \t");
+                    primerOperando= validarFlags(flag1, primerOperando, "ERROR! - Ingrese el primer operando: \t");
                     flag1=1;
-                    segundooperando=validarFlags(flag2,segundooperando ,"\n \t Ingrese el segundo operando: \t");
+                    segundooperando=validarFlags(flag2,segundooperando , "ERROR! - Ingrese el segundo operando: \t");
                     flag2=1;
-                    operacion=sumar(primerOperando,segundooperando);
-                    informarOperadores(primerOperando, segundooperando);
-                    printf("La suma es  \t %.2f \t \n \n", operacion);
+                    respuestaSuma(primerOperando,segundooperando, "La suma es:");
                     break;
             case 4:
-                    primerOperando= validarFlags(flag1, primerOperando, "\n \t Ingrese el primer operando: \t");
+                    primerOperando= validarFlags(flag1, primerOperando, "ERROR! - Ingrese el primer operando: \t");
                     flag1=1;
-                    segundooperando=validarFlags(flag2,segundooperando , "\n \t Ingrese el segundo operando: \t");
+                    segundooperando=validarFlags(flag2,segundooperando , "ERROR! - Ingrese el segundo operando: \t");
                     flag2=1;
-                    operacion=restar(primerOperando,segundooperando);
-                    informarOperadores(primerOperando, segundooperando);
-                    printf("La Resta es  \t %.2f \t \n \n", operacion);
+                    respuestaResta(primerOperando,segundooperando, "La resta es:");
                     break;
             case 5:
-                    primerOperando= validarFlags(flag1, primerOperando, "\n \t Ingrese el primer operando: \t");
+                    primerOperando= validarFlags(flag1, primerOperando, "ERROR! - Ingrese el primer operando: \t");
                     flag1=1;
-                    segundooperando=validarFlags(flag2,segundooperando , "\n \t Ingrese el segundo operando: \t");
-                    if (segundooperando==0)
-                    {
-                        informarOperadores(primerOperando, segundooperando);
-                        printf("La Division no se puede realizar \n \n");
-                    }
-                    else
-                    {
-                        operacion=dividir(primerOperando,segundooperando);
-                        informarOperadores(primerOperando, segundooperando);
-                        printf("La Division es  \t %.2f \t \n \n \n", operacion);
-                    }
+                    segundooperando=validarFlags(flag2,segundooperando , "ERROR! - Ingrese el segundo operando: \t");
+                    flag2=1;
+                    respuestaDivision(primerOperando,segundooperando);
                     break;
             case 6:
-                   primerOperando= validarFlags(flag1, primerOperando, "\n \t Ingrese el primer operando: \t");
+                   primerOperando= validarFlags(flag1, primerOperando, "ERROR! - Ingrese el primer operando: \t");
                    flag1=1;
-                   segundooperando=validarFlags(flag2,segundooperando , "\n \t Ingrese el segundo operando: \t");
+                   segundooperando=validarFlags(flag2,segundooperando , "ERROR! - Ingrese el segundo operando: \t");
                    flag2=1;
-                   operacion=multiplicar(primerOperando,segundooperando);
-                   informarOperadores(primerOperando, segundooperando);
-                   printf("La Multiplicacion es  \t %.2f \t \n \n \n", operacion);
+                   respuestaMultiplicar(primerOperando,segundooperando, "La Multiplicacion es:");
                    break;
             case 7:
-                   primerOperando= validarFlags(flag1, primerOperando," \n \t Ingrese el primer operando: \t");
+                   primerOperando= validarFlags(flag1, primerOperando,"\t Ingrese el primer operando: \t");
                    flag1=1;
-                   printf("=======================\nPARA EL OPERANDO: %d \n",(int)primerOperando);
-                   printf("=======================\n");
-                   operacion=factorial((int)primerOperando);
-                   printf("\t \t El factorial es:  \t %.0f \n \n", operacion);
+                   operacion= factorial(primerOperando);
+                   respuestaFactorial(operacion, primerOperando);
                    break;
             case 8:
-                  primerOperando= validarFlags(flag1, primerOperando, "\n \t Ingrese el primer operando: \t");
+                  primerOperando= validarFlags(flag1, primerOperando, "\t Ingrese el primer operando: \t");
                   flag1=1;
-                  segundooperando=validarFlags(flag2,segundooperando , "\n \t Ingrese el segundo operando: \t");
+                  segundooperando=validarFlags(flag2,segundooperando , "\t Ingrese el segundo operando: \t");
                   flag2=1;
                   informarOperadores(primerOperando, segundooperando);
                   calcularTodasOperaciones(primerOperando,segundooperando);

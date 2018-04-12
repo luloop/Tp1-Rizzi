@@ -13,10 +13,19 @@
  */
  float pedirEnteroSintope (char texto[])
 {
-    float numero;
-    printf("%s",texto); // se adapta al texto del mail
-    scanf("%f", &numero);
+    int ok;
 
+    float numero;
+    printf("\n------------------------------------\n%s",texto); // se adapta al texto del mail
+    scanf("%f", &numero);
+    /* ok = scanf("%f", &numero);
+    while (ok ==0)
+         {
+            printf("\n------------------------------------\nError - %s",texto); // se adapta al texto del mail
+            scanf("%f", &numero);
+            ok = scanf("%f", &numero);
+            fflush(stdin);
+         } */
     return numero;
 }
 
@@ -34,6 +43,7 @@ float validarFlags (int bandera1, float operando1,char texto[])
     {
     operando1=pedirEnteroSintope(texto);
     }
+
     return operando1;
 }
 
@@ -91,23 +101,28 @@ float validarFlags (int bandera1, float operando1,char texto[])
  }
 
 
- /** \brief FACTORIAL DE 1 NUMERO FLOTANTE
+ /** \brief FACTORIAL DE 1 NUMERO
  * \param OPERANDOR CASTEADO
  * \return RESULTADO DEL FACTORIAL
  */
  float factorial( float operador1)
  {
-    float resultado;
-    if ((int)operador1==0)
+    float resultado=1;
+    if (operador1==0)
     {
-    resultado=1;
+        return resultado;
+    }
+
+    else if ((operador1-(int)operador1)!=0 || operador1 < 0)
+    {
+        resultado=0;
+        return resultado;
     }
     else
     {
-    resultado = operador1*factorial(operador1-1);
+        resultado = operador1*factorial(operador1-1);
+        return resultado;
     }
-    return resultado;
-
 }
 
 ////////////////////////////////MOSTRAR - OPERACIONES VOID/////////////////////////
@@ -141,25 +156,32 @@ float facto;
     suma= sumar(primerOperando,segundooperando);
     divi=dividir(primerOperando,segundooperando);
     rest=restar(primerOperando,segundooperando);
-    facto=factorial((int)primerOperando);
+    facto=factorial(primerOperando);
 
-     if (segundooperando==0)
+    if (segundooperando==0 && facto==0)
         {
-        printf("\n La suma es:\t \t  %.2f \n La resta es: \t \t  %.2f \n La division no se puede realizar \n La multiplicacion es:\t  %.2f \n El factorial es:\t  %.2f \n \n", suma,rest,multi,facto);
+            printf("\n La suma es:\t \t  %.2f \n La resta es:\t \t  %.2f \n La division no se puede realizar \n La multiplicacion es:\t  %.2f \n El factorial es no se puede calcular con el operando ingresado \n \n", suma,rest,multi);
         }
-        else
+     else if (segundooperando==0)
+        {
+            printf("\n La suma es:\t \t  %.2f \n La resta es: \t \t  %.2f \n La division no se puede realizar \n La multiplicacion es:\t  %.2f \n El factorial es:\t  %.2f \n \n", suma,rest,multi,facto);
+        }
+    else if (facto==0)
+        {
+            printf("\n La suma es:\t \t  %.2f \n La resta es:\t \t  %.2f \n La division es:\t  %.2f \n La multiplicacion es:\t  %.2f \n El factorial es no se puede calcular con el operando ingresado \n \n",suma,rest,divi,multi);
+        }
+    else
         {
         printf("\n La suma es:\t \t  %.2f \n La resta es:\t \t  %.2f \n La division es:\t  %.2f \n La multiplicacion es:\t  %.2f \n El factorial es:\t  %.2f \n \n", suma,rest,divi,multi,facto);
         }
 }
 
-   /** \brief INGRESAR MENU
+   /** \brief MOSTRAR MENU
    * \return LA OPCION ELEGIDA DEL MENU VALIDAD
    */
 int ingresarMenu (void)
 {
     int opcion;
-
         printf("\n1- Ingresar 1er operando (A=x)\n");
         printf("2- Ingresar 2do operando (B=y)\n");
         printf("3- Calcular la suma (A+B)\n");
@@ -174,23 +196,108 @@ int ingresarMenu (void)
 
         scanf("%d",&opcion);
 
-        if (opcion >9 || opcion <1)
+        while (opcion >9 || opcion <1 )
         {
-        printf("\n-------------------------------- \n LA OPCION ELEGIDA NO ES VALIDA\n-------------------------------- \n");
-        printf("\n1- Ingresar 1er operando (A=x)\n");
-        printf("2- Ingresar 2do operando (B=y)\n");
-        printf("3- Calcular la suma (A+B)\n");
-        printf("4- Calcular la resta (A-B)\n");
-        printf("5- Calcular la division (A/B)\n");
-        printf("6- Calcular la multiplicacion (A*B)\n");
-        printf("7- Calcular el factorial (A!)\n");
-        printf("8- Calcular todas las operacione\n");
-        printf("9- Salir\n");
+                printf("\n");
+                system("pause");
+                system ("cls");
 
-        printf(" \n \t Reingrese la opcion elegida: \t");
-        fflush(stdin);
-        scanf("%d",&opcion);
+            printf("\n-------------------------------- \n LA OPCION ELEGIDA NO ES VALIDA\n-------------------------------- \n");
+            printf("\n1- Ingresar 1er operando (A=x)\n");
+            printf("2- Ingresar 2do operando (B=y)\n");
+            printf("3- Calcular la suma (A+B)\n");
+            printf("4- Calcular la resta (A-B)\n");
+            printf("5- Calcular la division (A/B)\n");
+            printf("6- Calcular la multiplicacion (A*B)\n");
+            printf("7- Calcular el factorial (A!)\n");
+            printf("8- Calcular todas las operacione\n");
+            printf("9- Salir\n");
+
+            printf(" \n \t Reingrese la opcion elegida: \t");
+            fflush(stdin);
+            scanf("%d",&opcion);
+
         }
 
         return opcion;
+}
+/** \brief MUESTRA EL RESULTADO DEL FACTORIAL NO SEA NEGATIVO NI DECIMAL
+* \param OPERADOR QUE SE USO PARA UTILIZAR LA OPERACION
+* \param OPERADOR CON EL QUE SE HIZO LA OPERACION
+* \return VOID
+*/
+void respuestaFactorial (float resul, float op1)
+{
+if (resul>=1)
+    {
+        printf("=======================\nPARA EL OPERANDO: %.0f \n",op1);
+        printf("-----------------------\n");
+        printf("El factorial es:  %.0f \n", resul);
+    }
+else if (resul==0)
+    {
+        printf("=======================\nPARA EL OPERANDO: %.2f \n",op1);
+        printf("-----------------------\n");
+        printf("No se puede realizar la operacion con el numero ingresado\n");
+    }
+}
+
+/** \brief MUESTRAR RESPUESTA A DIVISION
+  * \param OPERADOR1
+  * \param OPERADOR2
+  * \return VOID
+  */
+void respuestaDivision ( float primerOperando, float segundooperando)
+{
+    float operacion;
+    if (segundooperando==0)
+     {
+         informarOperadores(primerOperando, segundooperando);
+         printf("La Division no se puede realizar \n \n");
+     }
+    else
+     {
+        operacion=dividir(primerOperando,segundooperando);
+        informarOperadores(primerOperando, segundooperando);
+        printf("La Division es  \t %.2f \t \n \n \n", operacion);
+     }
+}
+
+/** \brief MUESTRAR RESPUESTA A MULTIPLICACION
+  * \param OPERADOR1
+  * \param OPERADOR2
+  * \return VOID
+  */
+void respuestaMultiplicar ( float primerOperando, float segundooperando, char texto[])
+{
+   float operacion;
+   operacion=multiplicar(primerOperando,segundooperando);
+   informarOperadores(primerOperando, segundooperando);
+   printf("%s \t %.2f \t \n \n",texto, operacion);
+}
+
+/** \brief MUESTRAR RESPUESTA A SUMA
+  * \param OPERADOR1
+  * \param OPERADOR2
+  * \return VOID
+  */
+void respuestaSuma( float primerOperando, float segundooperando, char texto[])
+{
+float operacion;
+operacion=sumar(primerOperando,segundooperando);
+informarOperadores(primerOperando, segundooperando);
+printf("%s \t %.2f \t \n \n",texto, operacion);
+}
+
+/** \brief MUESTRAR RESPUESTA A RESTA
+  * \param OPERADOR1
+  * \param OPERADOR2
+  * \return VOID
+  */
+void respuestaResta( float primerOperando, float segundooperando, char texto[])
+{
+float operacion;
+operacion=restar(primerOperando,segundooperando);
+informarOperadores(primerOperando, segundooperando);
+printf("%s \t %.2f \t \n \n",texto, operacion);
 }

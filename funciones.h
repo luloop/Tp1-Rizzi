@@ -56,7 +56,7 @@ float validarFlags (int bandera1, float operando1,char texto[]);
  * \param OPERANDOR CASTEADO
  * \return RESULTADO DEL FACTORIAL
  */
- float factorial(float operador1);
+ float factorial( float operador1);
 
 ////////////////////////////////MOSTRAR - OPERACIONES VOID/////////////////////////
 
@@ -65,7 +65,7 @@ float validarFlags (int bandera1, float operando1,char texto[]);
   * \param OPERADOR2
   * \return VOID
   */
-  void informarOperadores (float op1, float op2);
+  void informarOperadores (float, float);
 
   /** \brief MOSTRAR TODAS LAS OPERACIONES JUNTAS
   *
@@ -76,8 +76,44 @@ float validarFlags (int bandera1, float operando1,char texto[]);
   void calcularTodasOperaciones (float , float);
 
   /** \brief INGRESAR MENU
-   * \return LA OPCION ELEGIDA DEL MENU VALIDAD
+   * \return LA OPCION ELEGIDA DEL MENU VALIDADA
    */
-    int ingresarMenu (void);
+int ingresarMenu (void);
+
+/** \brief MUESTRA EL RESULTADO DEL FACTORIAL NO SEA NEGATIVO NI DECIMAL
+* \param OPERADOR QUE SE USO PARA UTILIZAR LA OPERACION
+* \param OPERADOR CON EL QUE SE HIZO LA OPERACION
+* \return VOID
+*/
+void respuestaFactorial (float, float);
+
+/** \brief MUESTRAR RESPUESTA A DIVISION
+  * \param OPERADOR1
+  * \param OPERADOR2
+  * \return VOID
+  */
+void respuestaDivision ( float , float );
+
+/** \brief MUESTRAR RESPUESTA A MULTIPLICACION
+  * \param OPERADOR1
+  * \param OPERADOR2
+  * \return VOID
+  */
+void respuestaMultiplicar ( float, float, char []);
+
+
+/** \brief MUESTRAR RESPUESTA A SUMA
+  * \param OPERADOR1
+  * \param OPERADOR2
+  * \return VOID
+  */
+void respuestaSuma( float, float, char []);
+
+/** \brief MUESTRAR RESPUESTA A RESTA
+  * \param OPERADOR1
+  * \param OPERADOR2
+  * \return VOID
+  */
+void respuestaResta( float, float, char []);
 
 
