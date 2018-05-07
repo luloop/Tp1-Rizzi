@@ -126,3 +126,19 @@
 	<conio.h>
 	<ctype.h>
 
+1525720905 source:c:\users\usuario\desktop\tps\tp_laboratorio_1\tp1\funciones.c
+	"funciones.h"
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+
+1525720905 c:\users\usuario\desktop\tps\tp_laboratorio_1\tp1\funciones.h
+
+1525720905 source:c:\users\usuario\desktop\tps\tp_laboratorio_1\tp1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<ctype.h>
+	"funciones.h"
+

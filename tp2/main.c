@@ -13,6 +13,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include <conio.h>
+
 #include "funciones.h"
 #define CantUsuario 20
 
@@ -27,15 +31,17 @@ int main()
      ePersona personas[CantUsuario];
 
      indiceUsuarios(personas, CantUsuario);
+     cargarUsuarios(personas, 15);
 
     while(seguir=='s')
     {
-        printf("\n1- Agregar persona\n");
-        printf("2- Borrar persona\n");
-        printf("3- Imprimir lista ordenada por  nombre\n");
-        printf("4- Imprimir grafico de edades\n");
-        printf("5- Salir");
-        printf("\n \t \t Ingrese la opcion deseada: ");
+        printf("\n\t====== SISTEMA DE GESTION DE PERSONAS ======\n");
+        printf("\n\t1- Agregar persona\n");
+        printf("\t2- Borrar persona\n");
+        printf("\t3- Imprimir lista ordenada por  nombre\n");
+        printf("\t4- Imprimir grafico de edades\n");
+        printf("\t5- Salir");
+        printf("\n\t \t \t Ingrese la opcion deseada: ");
 
         scanf("%d",&opcion);
 
@@ -54,9 +60,15 @@ int main()
                 cleanScreen();
                 break;
             case 4:
+                printf("\n------- Grafico por edades ------- \n");
                 graficos (personas, CantUsuario);
                 break;
             case 5:
+                printf("\n");
+                system ("cls");
+                printf("\n------------------------------------------------------\n");
+                printf("\n---------------------- CHAU --------------------------\n");
+                printf("\n------------------------------------------------------\n\n\n\n\n\n\n\n\n\n\n");
                 seguir = 'n';
                 break;
         }

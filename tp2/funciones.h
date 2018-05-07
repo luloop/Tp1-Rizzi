@@ -35,14 +35,6 @@ int  altaUsuario (ePersona[],int);
  */
 int searchIndexUsers (ePersona[],int );
 
-/** \brief Validar una respuesta por S o N
- *
- * \param respuesta ingresada
- * \param Texto de la validacion
- * \return respuesta validada
- *
- */
-char ValidacionSiNo (char, char[]);
 
 /** \brief Listado de usuarios cargados, busca estado 1 y publica
  *
@@ -94,6 +86,30 @@ void graficos (ePersona[] ,int);
 /** \LIMPIA LA PANTALLA
  */
 void cleanScreen (void);
+
+/** \brief PEDIR DNI
+ *
+ * \param DNI
+ * \return DNI VALIDADO
+ *
+ */
+ int pedirDNI (void);
+
+   /** \brief PEDIR EDAD
+ *
+ * \return EDAD VALIDADO
+ *
+ */
+ int pedirEdad (void);
+
+ /** \brief Pregunta S o N
+ * *
+ * \param texto de la pregunta
+ * \return respuesta
+ *
+ */
+ char preguntarSiNo ( char texto []);
+
 
 
 #endif // FUNCIONES_H_INCLUDED
