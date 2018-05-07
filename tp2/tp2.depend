@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1525026368 source:c:\users\lucil\dropbox\programaci-n-y-laboratorio-i\tp2\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1525026678 c:\users\lucil\dropbox\programaci-n-y-laboratorio-i\tp2\tp2\funciones.h
+
+1525026166 source:c:\users\lucil\dropbox\programaci-n-y-laboratorio-i\tp2\tp2\funciones.c
+	"funciones.h"
+
+1525035974 source:c:\users\lucil\dropbox\tp2\funciones.c
+	"funciones.h"
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+
+1525081724 c:\users\lucil\dropbox\tp2\funciones.h
+
+1525081724 source:c:\users\lucil\dropbox\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1525275688 source:c:\users\usuario\desktop\tp2\funciones.c
+	"funciones.h"
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+
+1525275388 c:\users\usuario\desktop\tp2\funciones.h
+
+1525275388 source:c:\users\usuario\desktop\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
