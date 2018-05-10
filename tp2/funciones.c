@@ -27,11 +27,12 @@ void indiceUsuarios (ePersona usuarios[], int tamanio)
  *
  * \param estructura de usuarios
  * \param tamanio de array de personas
- * \return VOID
+ * \return flag
  *
  */
-void cargarUsuarios (ePersona usuarios[], int tamanio)
+int cargarUsuarios (ePersona usuarios[], int tamanio)
 {
+ int flag =0;
  char auxNombre[30] [50] ={"XOzoz" , "Lucila"  , "MArco", "Caro", "ANA", "Marco", "Caro", "Ana", "Caro", "Ana", "Zozoz", "Lucila", "Marco", "Caro", "Ana","XOzoz" , "Lucila"  , "MArco", "Caro", "ANA", "Marco", "Caro", "Ana", "Caro", "Ana", "Zozoz", "Lucila", "Marco", "Caro", "Ana"};
  int auxEdad[30] = {16,17,21,28,45,14,56,36,56,34,15,18,22,39,12,16,17,21,28,45,14,56,36,56,34,15,18,22,39,12};
  int i;
@@ -41,7 +42,10 @@ void cargarUsuarios (ePersona usuarios[], int tamanio)
     usuarios[i].edad=auxEdad[i];
     usuarios[i].dni=30887699+i;
     usuarios[i].estado=1;
+    flag =1;
     }
+
+    return flag;
 }
 
 
@@ -396,6 +400,7 @@ void cleanScreen (void)
 
    while (dni<1000000||dni>100000000)
    {
+   fflush(stdin);
    printf("Error! Ingrese una DNI valido entre 1.000.000 y 100.000.000:\t");
    scanf("%d", &dni);
    }
@@ -414,6 +419,7 @@ void cleanScreen (void)
         scanf("%d", &edad);
         while (edad<0 || edad>100)
             {
+            fflush(stdin);
             printf("Error! Ingrese una edad valida entre 1 y 99:\t");
             scanf("%d", &edad);
             }

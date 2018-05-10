@@ -24,14 +24,14 @@
 int main()
 {
     char seguir='s';
-    int opcion=0;
-    int flagPersona=1;
+    char opcion;
+    int flagPersona=0;
 
      //ePersona persona;
      ePersona personas[CantUsuario];
 
      indiceUsuarios(personas, CantUsuario);
-     cargarUsuarios(personas, 15);
+     flagPersona= cargarUsuarios(personas, 15);
 
     while(seguir=='s')
     {
@@ -42,34 +42,41 @@ int main()
         printf("\t4- Imprimir grafico de edades\n");
         printf("\t5- Salir");
         printf("\n\t \t \t Ingrese la opcion deseada: ");
-
-        scanf("%d",&opcion);
+        fflush(stdin);
+        scanf("%c",&opcion);
 
         switch(opcion)
         {
-            case 1:
+            case '1':
                 flagPersona=altaUsuario(personas, CantUsuario);
                 cleanScreen();
                 break;
-            case 2:
+            case '2':
                 bajaUsuario(personas, CantUsuario, flagPersona);
                 cleanScreen();
                 break;
-            case 3:
+            case '3':
                 mostrarOrdenadoPorNombre (personas, CantUsuario, flagPersona);
                 cleanScreen();
                 break;
-            case 4:
+            case '4':
                 printf("\n------- Grafico por edades ------- \n");
                 graficos (personas, CantUsuario);
                 break;
-            case 5:
+            case '5':
                 printf("\n");
                 system ("cls");
                 printf("\n------------------------------------------------------\n");
                 printf("\n---------------------- CHAU --------------------------\n");
                 printf("\n------------------------------------------------------\n\n\n\n\n\n\n\n\n\n\n");
                 seguir = 'n';
+                break;
+            default:
+                printf("\n------------------------------------------------------\n");
+                printf("\n----------- No ingreso una opcion valida -------------\n ");
+                printf("\n------------------------------------------------------\n");
+                fflush(stdin);
+                cleanScreen();
                 break;
         }
     }
