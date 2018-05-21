@@ -1,20 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
 #include "funciones.h"
 
-typedef struct{
-    char titulo[20];
-    char genero[20];
-    int duracion;
-    char descripcion[50];
-    int puntaje;
-    char linkImagen[50];
-}EMovie;
+#define CANTPELIS 20
+
 
 int main()
 {
     char seguir='s';
     int opcion=0;
+    int flagPelis=0;
+
+
+    EMovie peliculas [CANTPELIS];
+    EMovie pelicula;
+    EMovie *pPeliculas =NULL;
+
+    pPeliculas=peliculas;
+
+    FILE *pArchivo;
+
+    pArchivo=fopen("peliculas-descripcion.txt", "w");
+
+    indiceUsuarios(peliculas, CANTPELIS);
+
+    if ( pArchivo!=NULL)
+    {
+
+    //fprintf(parchivo, "Holaaaaaaaaaa");
 
     while(seguir=='s')
     {
@@ -28,6 +43,7 @@ int main()
         switch(opcion)
         {
             case 1:
+                flagPelis=agregarPelicula(pPeliculas, CANTPELIS);
                 break;
             case 2:
                 break;
@@ -38,6 +54,14 @@ int main()
                 break;
         }
     }
+    fclose(pArchivo);
+    printf("Guardado");
+    } // FIN IF DE !=NULL
+    else
+    {
+         printf("No Existe");
+    }
+
 
     return 0;
 }
