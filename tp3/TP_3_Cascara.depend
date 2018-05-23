@@ -15,3 +15,19 @@
 
 1526921982 c:\users\usuario\desktop\tp_laboratorio_1\tp3\funciones.h
 
+1527107606 source:c:\users\usuario\desktop\aaaa\tp_laboratorio_1\tp3\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"funciones.h"
+
+1527107338 c:\users\usuario\desktop\aaaa\tp_laboratorio_1\tp3\funciones.h
+
+1527107367 source:c:\users\usuario\desktop\aaaa\tp_laboratorio_1\tp3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"funciones.h"
+

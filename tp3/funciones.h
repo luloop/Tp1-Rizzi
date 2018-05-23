@@ -6,20 +6,25 @@ typedef struct{
     char genero[20];
     int duracion;
     char descripcion[50];
-    int puntaje;
+    float puntaje;
     char linkImagen[50];
     int estado;
+    int idPelicula;
 }EMovie;
 
-void indiceUsuarios (EMovie*, int);
+void indiceUsuarios (EMovie[], int);
 char preguntarSiNo ( char texto []);
+void cleanScreen (void);
+char preguntarSiNo ( char texto []);
+int guardarEnArchivo(EMovie peliculas [], int contador);
+float devolverPuntaje();
 
 /**
  *  Agrega una pelicula al archivo binario
  *  @param movie la estructura a ser agregada al archivo
  *  @return retorna 1 o 0 de acuerdo a si pudo agregar la pelicula o no
  */
-int agregarPelicula(EMovie *pelicula, int tamanio);
+int agregarPelicula(EMovie [], int );
 
 /**
  *  Borra una pelicula del archivo binario
