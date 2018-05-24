@@ -18,7 +18,6 @@ typedef struct{
 
 void indiceUsuarios (EMovie[], int);
 char preguntarSiNo ( char texto []);
-int guardarEnArchivo(EMovie peliculas [], int contador);
 int agregarPelicula(EMovie [], int );
 void mostrarPeliculaIndividual(EMovie peli);
 

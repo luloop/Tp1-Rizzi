@@ -8,7 +8,6 @@
 #include "lib.h"
 
 
-
 /** \brief Funcion de Indice
  * \param estructura de peliculas
  * \param tamanio de array de personas
@@ -20,11 +19,7 @@ void indiceUsuarios (EMovie peliculas[], int tamanio)
     int i;
     for (i=0 ; i<tamanio;i++)
     {
-    if(peliculas[i]. estado!=1 && peliculas[i]. estado!=2)
-        {
-        peliculas[i]. estado=0;
-        }
-
+      peliculas[i].estado=0;
     }
 }
 
@@ -39,66 +34,76 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
 {
     char seguir ='s';
     int index;
-    int contador=0;
+    int cargado=0;
     int i;
     int auxGenero;
 
 
     do{
-
-   for (i=0; i<tamanio; i++)
-       {
-
-           if (pelicula[i].estado==0)
-                {
-                pelicula[i].idPelicula = i+10;
-                printf("\n \n---- NUEVO INGRESO DE PELICULA %d----\t", i+1);
-                printf("\n \nIngrese El Titulo\t");
-                fflush(stdin);
-                gets(pelicula[i].titulo);
-                /////////////pasar a funcion
-                printf("----------------------\n");
-                printf("Ingrese El Genero\n");
-                printf("----------------------");
-                printf("\n 1- Terror\t");
-                printf("\n 2- Comedia\t");
-                printf("\n 3- Drama\t");
-                printf("\n 4- Dibujos Animados\t");
-                printf("\n 5- Otro\t");
-                printf("\n Seleccione la opcion deseada\t");
-                scanf("%d", &auxGenero);
+       i=buscarLibre(pelicula, tamanio);
+       if (i!=-1)
+        {
+    pelicula[i].idPelicula = i+10;
+    printf("\n \n---- NUEVO INGRESO DE PELICULA %d----\t", i+1);
+    printf("\n \nIngrese El Titulo\t");
+    fflush(stdin);
+    gets(pelicula[i].titulo);
+    /////////////pasar a funcion
+    printf("----------------------\n");
+    printf("Ingrese El Genero\n");
+    printf("----------------------");
+    printf("\n 1- Terror\t");
+    printf("\n 2- Comedia\t");
+    printf("\n 3- Drama\t");
+    printf("\n 4- Dibujos Animados\t");
+    printf("\n 5- Accion\t");
+    printf("\n 6- Ciencia Ficcion\t");
+    printf("\n 7- Otro\t");
+    printf("\n Seleccione la opcion deseada\t");
+    scanf("%d", &auxGenero);
+    do {
                 switch (auxGenero)
                 {
                 case 1:
                     strcpy(pelicula[i].genero, "Terror");
-                    printf("El genero es Terror \t");
                     break;
                 case 2:
                     strcpy(pelicula[i].genero, "Comedia");
-                    printf("El genero es Comedia \t");
                     break;
                 case 3:
                     strcpy(pelicula[i].genero, "Drama");
-                    printf("El genero es Drama\t");
                     break;
                 case 4:
-                    strcpy(pelicula[i].genero, "Dibujos Animados");
-                    printf("El genero es Dibujos Animados \t");
+                    strcpy(pelicula[i].genero, "DA");
                     break;
                 case 5:
+                    strcpy(pelicula[i].genero, "Accion");
+                    break;
+                case 6:
+                    strcpy(pelicula[i].genero, "CF");
+                    break;
+                case 7:
                     strcpy(pelicula[i].genero, "Otro");
-                    printf("El genero es OTRO \t");
+                    break;
+                case 8:
+                    strcpy(pelicula[i].genero, "Otro");
                     break;
                 default:
                     fflush(stdin);
                     printf("NO INGRESO UNA OPCION VALIDA\t");
+                    auxGenero=0;
                     break;
                 }
+    }while (auxGenero==0);
+
+                    printf("\n-----------------------------\n");
+                    printf("El genero es %s \t",pelicula[i].genero );
+                    printf("\n-----------------------------\n");
                 ////////////////////////
 
-                printf("\n\nIngrese Duracion: \t");
-                fflush(stdin);
-                scanf("d",pelicula[i].duracion);
+                printf("\nIngrese Duracion: \t");
+               // fflush(stdin);
+                scanf("%d",&pelicula[i].duracion);
 
                 printf("Ingrese Descripcion\t");
                 fflush(stdin);
@@ -106,13 +111,13 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
 
                 pelicula[i].puntaje=devolverPuntaje();
 
-                printf("\nIngrese URL\t");
+                printf("Ingrese URL\t");
                 fflush(stdin);
                 gets(pelicula[i].linkImagen);// eventualmente arma fucniona para validar estos ingresois
 
                 pelicula[i].estado=1;
 
-                contador++;
+                cargado=1;
                 printf("\n");
 
                 seguir = preguntarSiNo("Cargar otra Pelicula?");
@@ -122,10 +127,9 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
                 }
 
                 } //if
-            }//for
             } while (seguir == 's');
 
-return contador;
+return cargado;
 }
 
 /** \brief DAR DE BAJA UN USUARIO PASANDO A 2 SU STATUS
@@ -213,7 +217,7 @@ void mostrarPeliculaIndividual(EMovie peli)
  */
 void mostrarUnaPeliculaParaListado(EMovie peli)
 {
- printf("\n%10d\t%8s\t%5s\t%d\t%0.2f" , peli.idPelicula,peli.titulo,peli.genero, peli.duracion, peli.puntaje);
+ printf("\n%4d\t%8s   %5s\t%d\t\t%0.2f\t\t %d" , peli.idPelicula,peli.titulo,peli.genero, peli.duracion, peli.puntaje,peli.estado);
 }
 
 
@@ -234,7 +238,8 @@ void listarPeliculas(EMovie peliculass[], int tamanio, int flag)
             else
             {  printf("\n\n\n========================\n PELICULAS CARGADOS\n========================\n");
 
-            printf("\n Id Titulo\t Genero\tDuracion\tPuntaje\tEstado");
+            printf("\n  Id   Titulo\t      Genero\t    Duracion\t  Puntaje\tEstado");
+
 
                 for (i=0; i<tamanio; i++)
                 {
@@ -259,39 +264,5 @@ void listarPeliculas(EMovie peliculass[], int tamanio, int flag)
 }
 
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-int cargarDesdeArchivo(EMovie peliculas[],int CANTPELIS)
-{
-	int flag = 0;
-	FILE *pelis;
-
-	pelis=fopen("BaseDePeliculas.csv", "rb");
-	if(pelis==NULL)
-	{
-		pelis= fopen("BaseDePeliculas.csv", "wb");
-		if(pelis==NULL)
-		{
-			return 1;
-		}
-
-		flag=1;
-
-	}
-
-	if(flag ==0)
-	{
-	fread(peliculas,sizeof(EMovie),CANTPELIS,pelis);
-    }
-
-	fclose(pelis);
-	return 0;
-
-}
 
 

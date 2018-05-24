@@ -27,3 +27,31 @@
 	"peliculas.h"
 	"lib.h"
 
+1527190735 source:c:\users\usuario\desktop\aaaa\tp_laboratorio_1\tp3\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"peliculas.h"
+	"lib.h"
+
+1527190448 c:\users\usuario\desktop\aaaa\tp_laboratorio_1\tp3\peliculas.h
+
+1527190533 c:\users\usuario\desktop\aaaa\tp_laboratorio_1\tp3\lib.h
+
+1527190941 source:c:\users\usuario\desktop\aaaa\tp_laboratorio_1\tp3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"peliculas.h"
+	"lib.h"
+
+1527191211 source:c:\users\usuario\desktop\aaaa\tp_laboratorio_1\tp3\peliculas.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"peliculas.h"
+	"lib.h"
+
