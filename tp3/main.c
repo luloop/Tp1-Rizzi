@@ -62,7 +62,16 @@ int main()
         case 3:
                break;
         case 4:
+                if (contador!=0)
+               {
                contador=guardarArchivoABM(peliculas, CANTPELIS);
+               }
+               else
+                   {
+                    printf("\n-------------------------------\n");
+                    printf("No hay nuevo ingresos sin guardar\n");
+                    printf("-------------------------------\n");
+                   }
                cleanScreen();
                break;
         case 0:
@@ -70,7 +79,7 @@ int main()
                {
                 printf("\n-------------------------------\n");
                 salir=preguntarSiNo("Dese Guardar antes de salir?");
-                printf("-------------------------------\n");
+                printf("\n-------------------------------\n");
                     if (salir == 's')
                     {
                         if(guardarEnArchivo(peliculas,CANTPELIS))

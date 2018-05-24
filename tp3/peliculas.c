@@ -49,7 +49,8 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
     fflush(stdin);
     gets(pelicula[i].titulo);
     /////////////pasar a funcion
-    printf("----------------------\n");
+
+    printf("\n----------------------\n");
     printf("Ingrese El Genero\n");
     printf("----------------------");
     printf("\n 1- Terror\t");
@@ -59,9 +60,10 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
     printf("\n 5- Accion\t");
     printf("\n 6- Ciencia Ficcion\t");
     printf("\n 7- Otro\t");
+      do {
     printf("\n Seleccione la opcion deseada\t");
     scanf("%d", &auxGenero);
-    do {
+
                 switch (auxGenero)
                 {
                 case 1:
@@ -90,7 +92,9 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
                     break;
                 default:
                     fflush(stdin);
-                    printf("NO INGRESO UNA OPCION VALIDA\t");
+                    printf("\n-----------------------------\n");
+                    printf(" NO INGRESO UNA OPCION VALIDA\t");
+                     printf("\n-----------------------------\n");
                     auxGenero=0;
                     break;
                 }
