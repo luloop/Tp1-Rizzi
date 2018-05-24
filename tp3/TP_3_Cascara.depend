@@ -31,3 +31,19 @@
 	<string.h>
 	"funciones.h"
 
+1527166516 source:c:\users\lucil\desktop\tp_laboratorio_1\tp3\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"funciones.h"
+
+1527166516 c:\users\lucil\desktop\tp_laboratorio_1\tp3\funciones.h
+
+1527166516 source:c:\users\lucil\desktop\tp_laboratorio_1\tp3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"funciones.h"
+

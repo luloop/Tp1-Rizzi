@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1527167709 source:c:\users\lucil\desktop\tp_laboratorio_1\tp3_\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"peliculas.h"
+	"lib.h"
+
+1527168342 c:\users\lucil\desktop\tp_laboratorio_1\tp3_\peliculas.h
+
+1527167709 c:\users\lucil\desktop\tp_laboratorio_1\tp3_\lib.h
+
+1527169934 source:c:\users\lucil\desktop\tp_laboratorio_1\tp3_\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"peliculas.h"
+	"lib.h"
+
+1527169077 source:c:\users\lucil\desktop\tp_laboratorio_1\tp3_\peliculas.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"peliculas.h"
+	"lib.h"
+
