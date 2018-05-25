@@ -61,7 +61,7 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
     printf("\n 6- Ciencia Ficcion\t");
     printf("\n 7- Otro\t");
       do {
-    printf("\n Seleccione la opcion deseada\t");
+    printf("\n \nSeleccione la opcion deseada\t");
     scanf("%d", &auxGenero);
 
                 switch (auxGenero)
@@ -105,6 +105,11 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
                     printf("\n-----------------------------\n");
                 ////////////////////////
 
+                strcpy(pelicula[i].nombreArchivo, pelicula[i].titulo);
+                strcat(pelicula[i].titulo,"_");
+                strcat(pelicula[i].titulo,pelicula[i].genero);
+
+
                 printf("\nIngrese Duracion: \t");
                // fflush(stdin);
                 scanf("%d",&pelicula[i].duracion);
@@ -143,9 +148,9 @@ return cargado;
  * \return
  *
  */
-void bajaPelicula (EMovie peliculaa[], int tamanio, int flag)
+int bajaPelicula (EMovie peliculaa[], int tamanio, int flag)
 {
-int flagDelete;
+int flagDelete=0;
 int i;
 int idAux;
 char confirm;
@@ -164,37 +169,44 @@ char confirm;
                 printf("\n========================================================================\n");
                         for (i=0; i<tamanio;i++)
                             {
-                                if (peliculaa[i].idPelicula== idAux)
+                                if (peliculaa[i].idPelicula== idAux && i!=0)
+                                {
 
                                     mostrarPeliculaIndividual(peliculaa[i]);
                                     confirm = preguntarSiNo(" \nSeguro que desea borrar la Pelicula?\t");
-
+                                    flagDelete=1;
                                     if (confirm == 's')
                                      {
                                        peliculaa[i].estado=2;
                                        printf("\n\n======================================================\n");
                                        printf("Pelicula borrada: %s, con el Id  Nro: %d",peliculaa[i].titulo,peliculaa[i].idPelicula);
                                        printf("\n======================================================\n");
-                                       flagDelete=1;
+
+                                       return 1;
                                        break;
                                       }
                                     else
                                       {
                                     printf("\n\n==========================================\n");
                                     printf("Operacion Cancelada");
-                                    printf("\n==========================================\n");
+                                    printf("\n==========================================\n\n\n\n");
                                       }
+
+                                }//fin if id =aux
+
+
                             }//fin for
 
-                if (flagDelete==0)
+
+               }
+                  if (flagDelete==0)
                     {
                             printf("\n\n==========================================\n");
                             printf("La peliculaa que desea borrar no existe");
                             printf("\n==========================================\n");
+                            ;
                     }
-               }
 
-       cleanScreen();
 }
 
 
@@ -263,10 +275,75 @@ void listarPeliculas(EMovie peliculass[], int tamanio, int flag)
                 }
                 printf("\n========================================================================\n");
             }
-        cleanScreen();
 
 }
 
 
 
 
+int htmlArmado(EMovie peliculass[],int tamanio, char nombrearchivo[])
+{
+    FILE* archivo;
+    char buffer[1080]= {};
+    int idAux;
+    int i;
+    int flag =1;
+
+       strcat(buffer,"<html lang='en'><head><meta charset='utf-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'>"
+       " <meta name='viewport' content='width=device-width, initial-scale=1'>"
+        "<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->"
+        "<title>Lista peliculas</title>"
+        "<!-- Bootstrap Core CSS -->"
+        "<link href='css/bootstrap.min.css' rel='stylesheet'>"
+        "<!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->"
+        "<link href='css/custom.css' rel='stylesheet'>"
+        "<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->"
+        "<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->"
+        "<!--[if lt IE 9]>"
+        "    <script src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'></script>"
+         " <script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'></script>"
+        "<![endif]-->"
+        "</head>"
+        "<body>   <div class='container'>        <div class='row'>");
+
+        listarPeliculas(peliculass, tamanio, flag);
+        printf("\n========================================================================\n");
+        printf("\n\n Ingrese el Id de la peliculaa que desea gener el HTML:\t");
+        scanf("%d", &idAux);
+        printf("\n========================================================================\n");
+        for (i=0; i<tamanio;i++)
+                            {
+                                if (peliculass[i].idPelicula&&idAux && i!=0)
+                                {
+                                    break;
+                                }
+
+
+
+        strcat(buffer, "<article class='col-md-4 article-intro'>   <a href='#'>"
+        " <img class='img-responsive img-rounded' src='http://ia.media-imdb.com/images/M/MV5BMjA5NTYzMDMyM15BMl5BanBnXkFtZTgwNjU3NDU2MTE@._V1_UX182_CR0,0,182,268_AL_.jpg'"
+        "alt=''>"
+        "</a>  <h3> <a href='#'>");
+        strcat(buffer,peliculass[i].titulo);
+
+
+
+
+
+
+
+
+
+    strcat(buffer,"</h1></MARQUEE><br><br>");
+    strcat(buffer,"<table style='width:100%'><tr><th>Firstname</th><th>Lastname</th> <th>Age</th></tr><tr><td>Jill</td><td>Smith</td><td>50</td></tr><tr>"
+           " <td>Eve</td><td>Jackson</td><td>94</td></tr><tr> "
+           "<td>John</td> <td>Doe</td> <td>80</td></tr></table>"
+           "</body></html>");
+    archivo = fopen("prueba.html","w");
+
+
+    fprintf(archivo,buffer);
+
+    fclose(archivo);
+    return 0;
+}

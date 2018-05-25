@@ -13,6 +13,8 @@ typedef struct{
     char linkImagen[50];
     int estado;
     int idPelicula;
+    char nombreArchivo[42];
+    int htmlCreado;
 
 }EMovie;
 
@@ -20,6 +22,8 @@ void indiceUsuarios (EMovie[], int);
 char preguntarSiNo ( char texto []);
 int agregarPelicula(EMovie [], int );
 void mostrarPeliculaIndividual(EMovie peli);
+
+int bajaPelicula(EMovie [], int, int );
 
 /**
  *  Borra una pelicula del archivo binario

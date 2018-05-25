@@ -55,9 +55,9 @@ int main()
         case 2:
                 if (flagPelis==1)
                 {
-                  listarPeliculas(peliculas, CANTPELIS, flagPelis);
-
+                 contador = bajaPelicula(peliculas, CANTPELIS, contador);
                 }
+                cleanScreen();
                 break;
         case 3:
                break;
