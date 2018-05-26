@@ -19,6 +19,8 @@ void indiceUsuarios (EMovie peliculas[], int tamanio)
     int i;
     for (i=0 ; i<tamanio;i++)
     {
+       peliculas[i].idPelicula=0;
+       peliculas[i].puntaje=0;
       peliculas[i].estado=0;
       peliculas[i].htmlCreado=0;
       strcpy(peliculas[i].titulo, " ");
@@ -108,9 +110,8 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
                     printf("\n-----------------------------\n");
                 ////////////////////////
 
-                strcpy(pelicula[i].nombreArchivo, "\\template");
-                strcat(pelicula[i].nombreArchivo, pelicula[i].titulo);
-                strcat(pelicula[i].nombreArchivo,"_");
+                strcpy(pelicula[i].nombreArchivo, pelicula[i].titulo);
+                strcat(pelicula[i].nombreArchivo,"-");
                 strcat(pelicula[i].nombreArchivo,pelicula[i].genero);
                 strcat(pelicula[i].nombreArchivo,".html");
 
@@ -291,11 +292,13 @@ void listarPeliculas(EMovie peliculass[], int tamanio, int flag, int estado)
 int htmlArmado(EMovie peliculass[],int tamanio)
 {
     FILE* archivo;
-    char buffer[1080]= {};
+    char buffer[5000]= {};
     int idAux;
     int i;
     int flag =1;
     int flag2=0;
+    char puntaje[10];
+    char auxDuracion[10];
 
         listarPeliculas(peliculass, tamanio, flag, 1);
         printf("\n========================================================================\n");
@@ -304,7 +307,7 @@ int htmlArmado(EMovie peliculass[],int tamanio)
         printf("\n========================================================================\n");
         for (i=0; i<tamanio;i++)
                             {
-                                if (peliculass[i].idPelicula&&idAux && i!=0)
+                                if (peliculass[i].idPelicula==idAux)
                                 {
                                     flag2=1;
                                     break;
@@ -328,26 +331,22 @@ int htmlArmado(EMovie peliculass[],int tamanio)
          " <script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'></script>"
         "<![endif]-->"
         "</head>"
-        "<body>   <div class='container'>        <div class='row'>");
-
-
-
-        strcat(buffer, "<article class='col-md-4 article-intro'>   <a href='#'>"
+        "<body><div class='container'><div class='row'>");
+        strcat(buffer, "<article class='col-md-4 article-intro'> <a href='#'>"
         " <img class='img-responsive img-rounded' src='http://ia.media-imdb.com/images/M/MV5BMjA5NTYzMDMyM15BMl5BanBnXkFtZTgwNjU3NDU2MTE@._V1_UX182_CR0,0,182,268_AL_.jpg'"
         "alt=''>"
-        "</a>  <h3> <a href='#'>");
+        "</a><h3> <a href='#'>");
         strcat(buffer,peliculass[i].titulo);
         strcat(buffer,"</a>  </h3>  <ul>   <li>");
         strcat(buffer,"Género: ");
         strcat(buffer,peliculass[i].genero);
         strcat(buffer,"</li> <li>Puntaje: ");
-        strcat(buffer,(char)peliculass[i].puntaje);
+        sprintf(puntaje, "%g", peliculass[i].puntaje);
+        strcat(buffer,puntaje);
         strcat(buffer,"</li><li>Duración:");
-        strcat(buffer,(char)peliculass[i].duracion);
+        sprintf(auxDuracion, "%g", peliculass[i].duracion);
         strcat(buffer,"</li></ul><p>");
         strcat(buffer,peliculass[i].descripcion);
-
-
         strcat(buffer,"</p>"
             "</article>"
             "<!-- Repetir esto para cada pelicula -->"
@@ -359,23 +358,25 @@ int htmlArmado(EMovie peliculass[],int tamanio)
             "</body>"
 
             "</html>");
-
-
-
-
-
-
-
-
-
-
-    strcat(buffer,"</h1></MARQUEE><br><br>");
-    strcat(buffer,"<table style='width:100%'><tr><th>Firstname</th><th>Lastname</th> <th>Age</th></tr><tr><td>Jill</td><td>Smith</td><td>50</td></tr><tr>"
+        strcat(buffer,"</h1></MARQUEE><br><br>");
+        strcat(buffer,"<table style='width:100%'><tr><th>Firstname</th><th>Lastname</th> <th>Age</th></tr><tr><td>Jill</td><td>Smith</td><td>50</td></tr><tr>"
            " <td>Eve</td><td>Jackson</td><td>94</td></tr><tr> "
            "<td>John</td> <td>Doe</td> <td>80</td></tr></table>"
            "</body></html>");
-    archivo = fopen(peliculass[i].nombreArchivo,"w");
 
+    char fileNam [100];
+       // strcpy(fileNam, "C:/Users/lucil/Desktop/tp_laboratorio_1/tp3/template/");
+     //   strcpy(fileNam, peliculass[i].nombreArchivo);
+     RemoveSpaces(peliculass[i].nombreArchivo);
+    sprintf(fileNam, peliculass[i].nombreArchivo);
+    archivo = fopen(fileNam,"w");
+    //////////////////
+   if(archivo== NULL)
+		{
+        printf("\n-----------------------------\n");
+        printf(" NULLLLL\t");
+        printf("\n-----------------------------\n");
+		}
 
     fprintf(archivo,buffer);
 
@@ -391,4 +392,18 @@ int htmlArmado(EMovie peliculass[],int tamanio)
         return 0;
     }
 
+}
+
+
+void RemoveSpaces(char* source)
+{
+  char* i = source;
+  char* j = source;
+  while(*j != 0)
+  {
+    *i = *j++;
+    if(*i != ' ')
+      i++;
+  }
+  *i = 0;
 }

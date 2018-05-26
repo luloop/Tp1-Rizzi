@@ -13,7 +13,7 @@ typedef struct{
     char linkImagen[50];
     int estado;
     int idPelicula;
-    char nombreArchivo[42];
+    char nombreArchivo[100];
     int htmlCreado;
 
 }EMovie;
