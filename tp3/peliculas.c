@@ -20,6 +20,9 @@ void indiceUsuarios (EMovie peliculas[], int tamanio)
     for (i=0 ; i<tamanio;i++)
     {
       peliculas[i].estado=0;
+      peliculas[i].htmlCreado=0;
+      strcpy(peliculas[i].titulo, " ");
+      strcpy(peliculas[i].descripcion, " ");
     }
 }
 
@@ -105,9 +108,13 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
                     printf("\n-----------------------------\n");
                 ////////////////////////
 
-                strcpy(pelicula[i].nombreArchivo, pelicula[i].titulo);
-                strcat(pelicula[i].titulo,"_");
-                strcat(pelicula[i].titulo,pelicula[i].genero);
+                strcpy(pelicula[i].nombreArchivo, "\\template");
+                strcat(pelicula[i].nombreArchivo, pelicula[i].titulo);
+                strcat(pelicula[i].nombreArchivo,"_");
+                strcat(pelicula[i].nombreArchivo,pelicula[i].genero);
+                strcat(pelicula[i].nombreArchivo,".html");
+
+                pelicula[i].htmlCreado=0;
 
 
                 printf("\nIngrese Duracion: \t");
@@ -162,7 +169,7 @@ char confirm;
         else
             {
 
-                listarPeliculas(peliculaa, tamanio, flag);
+                listarPeliculas(peliculaa, tamanio, flag, 1);
                 printf("\n========================================================================\n");
                 printf("\n\n Ingrese el Id de la peliculaa que desea dar de BAJA:\t");
                 scanf("%d", &idAux);
@@ -244,7 +251,7 @@ void mostrarUnaPeliculaParaListado(EMovie peli)
  * \return
  *
  */
-void listarPeliculas(EMovie peliculass[], int tamanio, int flag)
+void listarPeliculas(EMovie peliculass[], int tamanio, int flag, int estado)
 {
     int i;
     if(flag==0)
@@ -260,7 +267,7 @@ void listarPeliculas(EMovie peliculass[], int tamanio, int flag)
                 for (i=0; i<tamanio; i++)
                 {
 
-                    if(peliculass[i].estado==1)
+                    if(peliculass[i].estado==estado)
                     {
                    // mostrarUnaPeliculaParaListado(peliculass[i]);
                    mostrarUnaPeliculaParaListado(peliculass[i]);
@@ -281,14 +288,31 @@ void listarPeliculas(EMovie peliculass[], int tamanio, int flag)
 
 
 
-int htmlArmado(EMovie peliculass[],int tamanio, char nombrearchivo[])
+int htmlArmado(EMovie peliculass[],int tamanio)
 {
     FILE* archivo;
     char buffer[1080]= {};
     int idAux;
     int i;
     int flag =1;
+    int flag2=0;
 
+        listarPeliculas(peliculass, tamanio, flag, 1);
+        printf("\n========================================================================\n");
+        printf("\n\n Ingrese el Id de la peliculaa que desea generar el HTML:\t");
+        scanf("%d", &idAux);
+        printf("\n========================================================================\n");
+        for (i=0; i<tamanio;i++)
+                            {
+                                if (peliculass[i].idPelicula&&idAux && i!=0)
+                                {
+                                    flag2=1;
+                                    break;
+                                }
+                            }
+
+      if(flag2==1)
+      {
        strcat(buffer,"<html lang='en'><head><meta charset='utf-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'>"
        " <meta name='viewport' content='width=device-width, initial-scale=1'>"
         "<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->"
@@ -306,18 +330,6 @@ int htmlArmado(EMovie peliculass[],int tamanio, char nombrearchivo[])
         "</head>"
         "<body>   <div class='container'>        <div class='row'>");
 
-        listarPeliculas(peliculass, tamanio, flag);
-        printf("\n========================================================================\n");
-        printf("\n\n Ingrese el Id de la peliculaa que desea gener el HTML:\t");
-        scanf("%d", &idAux);
-        printf("\n========================================================================\n");
-        for (i=0; i<tamanio;i++)
-                            {
-                                if (peliculass[i].idPelicula&&idAux && i!=0)
-                                {
-                                    break;
-                                }
-
 
 
         strcat(buffer, "<article class='col-md-4 article-intro'>   <a href='#'>"
@@ -325,6 +337,29 @@ int htmlArmado(EMovie peliculass[],int tamanio, char nombrearchivo[])
         "alt=''>"
         "</a>  <h3> <a href='#'>");
         strcat(buffer,peliculass[i].titulo);
+        strcat(buffer,"</a>  </h3>  <ul>   <li>");
+        strcat(buffer,"Género: ");
+        strcat(buffer,peliculass[i].genero);
+        strcat(buffer,"</li> <li>Puntaje: ");
+        strcat(buffer,(char)peliculass[i].puntaje);
+        strcat(buffer,"</li><li>Duración:");
+        strcat(buffer,(char)peliculass[i].duracion);
+        strcat(buffer,"</li></ul><p>");
+        strcat(buffer,peliculass[i].descripcion);
+
+
+        strcat(buffer,"</p>"
+            "</article>"
+            "<!-- Repetir esto para cada pelicula -->"
+            "</div><!-- /.row --></div><!-- /.container --><!-- jQuery --><script src='js/jquery-1.11.3.min.js'></script><!-- Bootstrap Core JavaScript --><script src='js/bootstrap.min.js'></script>"
+            "<!-- IE10 viewport bug workaround -->"
+            "<script src='js/ie10-viewport-bug-workaround.js'></script>"
+            "<!-- Placeholder Images -->"
+            "<script src='js/holder.min.js'></script>"
+            "</body>"
+
+            "</html>");
+
 
 
 
@@ -339,11 +374,21 @@ int htmlArmado(EMovie peliculass[],int tamanio, char nombrearchivo[])
            " <td>Eve</td><td>Jackson</td><td>94</td></tr><tr> "
            "<td>John</td> <td>Doe</td> <td>80</td></tr></table>"
            "</body></html>");
-    archivo = fopen("prueba.html","w");
+    archivo = fopen(peliculass[i].nombreArchivo,"w");
 
 
     fprintf(archivo,buffer);
 
     fclose(archivo);
-    return 0;
+    return 1;
+    }
+    else
+    {
+        fflush(stdin);
+        printf("\n-----------------------------\n");
+        printf(" NO INGRESO UNA PELICULA VALIDA\t");
+        printf("\n-----------------------------\n");
+        return 0;
+    }
+
 }

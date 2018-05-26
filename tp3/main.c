@@ -16,6 +16,7 @@ int main()
     char guardar;
     int contador=0;
     char salir;
+    int flagHtml=0;
 
     EMovie peliculas [CANTPELIS];
     EMovie pelicula;
@@ -60,6 +61,7 @@ int main()
                 cleanScreen();
                 break;
         case 3:
+            flagHtml=htmlArmado(peliculas, CANTPELIS);
                break;
         case 4:
                 if (contador!=0)
@@ -74,6 +76,15 @@ int main()
                    }
                cleanScreen();
                break;
+        case 5:
+            listarPeliculas(peliculas, CANTPELIS, flagPelis, 1);
+            printf("\n-------------------------------\n");
+                    printf("estado 2\n");
+            listarPeliculas(peliculas, CANTPELIS, flagPelis,2);
+             printf("\n-------------------------------\n");
+                    printf("estado 0\n");
+            listarPeliculas(peliculas, CANTPELIS, flagPelis, 0);
+          break;
         case 0:
                if (contador!=0)
                {

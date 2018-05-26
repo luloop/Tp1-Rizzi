@@ -183,7 +183,8 @@ int buscarLibre(EMovie losAlumnos[], int cantidad)
 	int index=-1;
 	int i;
 	for( i=0; i < cantidad; i++)
-	   if(losAlumnos[i].estado==0){
+	   if(losAlumnos[i].estado==0)
+        {
 		index=i;
 		break;
 	   }
