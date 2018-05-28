@@ -40,8 +40,9 @@ int main()
         printf("-------------------------------\n");
         printf("1- Agregar pelicula\n");
         printf("2- Borrar pelicula\n");
-        printf("3- Generar pagina web\n");
-        printf("4- Guardar\n");
+        printf("3- Modificar \n");
+        printf("4- Generar pagina web\n");
+        printf("5- Guardar\n");
         printf("0- Salir");
         printf("\n-----------------------------\n\t Ingrese la Opcion: ");
 
@@ -56,6 +57,7 @@ int main()
         case 2:
                 if (flagPelis==1)
                 {
+                    flagPelis=contadorArray(peliculas, CANTPELIS);
                  flagPelis= bajaPelicula(peliculas, CANTPELIS, flagPelis);
                 }
                 cleanScreen();
@@ -69,7 +71,7 @@ int main()
                 break;
         case 4:
             flagHtml=htmlArmado(peliculas, CANTPELIS);
-               break;
+            break;
         case 5:
                 if (flagPelis!=0)
                {
