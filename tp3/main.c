@@ -23,13 +23,13 @@ int main()
 /////////////////
     indiceUsuarios(peliculas, CANTPELIS);
 
-    if(cargarDesdeArchivo(peliculas))
+    if(cargarDesdeArchivo(peliculas, CANTPELIS))
         {
         printf("No se pudo abrir el fichero");
         }
 	else
         {
-        flagPelis=1;
+         flagPelis=contadorArray(peliculas, CANTPELIS);
         }
 ////////////////
 	while(seguir==1)
@@ -50,23 +50,30 @@ int main()
         switch(opcion)
         {
         case 1:
-                contador=agregarPelicula(peliculas, CANTPELIS);
+                flagPelis=agregarPelicula(peliculas, CANTPELIS);
                 cleanScreen();
                 break;
         case 2:
                 if (flagPelis==1)
                 {
-                 contador = bajaPelicula(peliculas, CANTPELIS, contador);
+                 flagPelis= bajaPelicula(peliculas, CANTPELIS, flagPelis);
                 }
                 cleanScreen();
                 break;
         case 3:
+                if (flagPelis==1)
+                {
+                 flagPelis= modificarPelicula(peliculas, CANTPELIS, flagPelis);
+                }
+                cleanScreen();
+                break;
+        case 4:
             flagHtml=htmlArmado(peliculas, CANTPELIS);
                break;
-        case 4:
-                if (contador!=0)
+        case 5:
+                if (flagPelis!=0)
                {
-               contador=guardarArchivoABM(peliculas, CANTPELIS);
+               flagPelis=guardarArchivoABM(peliculas, CANTPELIS);
                }
                else
                    {
@@ -76,7 +83,7 @@ int main()
                    }
                cleanScreen();
                break;
-        case 5:
+        case 6:
             listarPeliculas(peliculas, CANTPELIS, flagPelis, 1);
             printf("\n-------------------------------\n");
                     printf("estado 2\n");

@@ -66,6 +66,7 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
     printf("\n 6- Ciencia Ficcion\t");
     printf("\n 7- Otro\t");
       do {
+            fflush(stdin);
     printf("\n \nSeleccione la opcion deseada\t");
     scanf("%d", &auxGenero);
 
@@ -165,7 +166,7 @@ char confirm;
 
      if(flag==0)
             {
-                printf("\n\n\n======================\n NO HAY PELICULAS CARGADOS\n======================\n");
+                printf("\n\n\n======================\n NO HAY PELICULAS CARGADAS\n======================\n");
             }
         else
             {
@@ -177,14 +178,14 @@ char confirm;
                 printf("\n========================================================================\n");
                         for (i=0; i<tamanio;i++)
                             {
-                                if (peliculaa[i].idPelicula== idAux && i!=0)
+                                if (peliculaa[i].idPelicula== idAux )
                                 {
 
                                     mostrarPeliculaIndividual(peliculaa[i]);
                                     confirm = preguntarSiNo(" \nSeguro que desea borrar la Pelicula?\t");
                                     flagDelete=1;
                                     if (confirm == 's')
-                                     {
+                                        {
                                        peliculaa[i].estado=2;
                                        printf("\n\n======================================================\n");
                                        printf("Pelicula borrada: %s, con el Id  Nro: %d",peliculaa[i].titulo,peliculaa[i].idPelicula);
@@ -192,12 +193,13 @@ char confirm;
 
                                        return 1;
                                        break;
-                                      }
+                                        }
                                     else
                                       {
                                     printf("\n\n==========================================\n");
                                     printf("Operacion Cancelada");
                                     printf("\n==========================================\n\n\n\n");
+                                    break;
                                       }
 
                                 }//fin if id =aux
@@ -333,8 +335,9 @@ int htmlArmado(EMovie peliculass[],int tamanio)
         "</head>"
         "<body><div class='container'><div class='row'>");
         strcat(buffer, "<article class='col-md-4 article-intro'> <a href='#'>"
-        " <img class='img-responsive img-rounded' src='http://ia.media-imdb.com/images/M/MV5BMjA5NTYzMDMyM15BMl5BanBnXkFtZTgwNjU3NDU2MTE@._V1_UX182_CR0,0,182,268_AL_.jpg'"
-        "alt=''>"
+        " <img class='img-responsive img-rounded' src='");//http://ia.media-imdb.com/images/M/MV5BMjA5NTYzMDMyM15BMl5BanBnXkFtZTgwNjU3NDU2MTE@._V1_UX182_CR0,0,182,268_AL_.jpg
+        strcat(buffer,peliculass[i].linkImagen);
+        strcat(buffer,"'alt=''>"
         "</a><h3> <a href='#'>");
         strcat(buffer,peliculass[i].titulo);
         strcat(buffer,"</a>  </h3>  <ul>   <li>");
@@ -358,16 +361,11 @@ int htmlArmado(EMovie peliculass[],int tamanio)
             "</body>"
 
             "</html>");
-        strcat(buffer,"</h1></MARQUEE><br><br>");
-        strcat(buffer,"<table style='width:100%'><tr><th>Firstname</th><th>Lastname</th> <th>Age</th></tr><tr><td>Jill</td><td>Smith</td><td>50</td></tr><tr>"
-           " <td>Eve</td><td>Jackson</td><td>94</td></tr><tr> "
-           "<td>John</td> <td>Doe</td> <td>80</td></tr></table>"
-           "</body></html>");
 
     char fileNam [100];
        // strcpy(fileNam, "C:/Users/lucil/Desktop/tp_laboratorio_1/tp3/template/");
      //   strcpy(fileNam, peliculass[i].nombreArchivo);
-     RemoveSpaces(peliculass[i].nombreArchivo);
+    RemoveSpaces(peliculass[i].nombreArchivo);
     sprintf(fileNam, peliculass[i].nombreArchivo);
     archivo = fopen(fileNam,"w");
     //////////////////
@@ -407,3 +405,170 @@ void RemoveSpaces(char* source)
   }
   *i = 0;
 }
+
+
+
+
+int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
+ {
+     int i;
+     int idAux;
+     int confirm;
+     int flagchange=0;
+     int opcion;
+     EMovie auxmodi;
+     char seguro='n';
+     int auxGenero;
+
+              if(flag!=0)
+               {
+               listarPeliculas(peliculas, tamanio, flag, 1);
+               printf("\n============================================================================\n");
+               printf("\n\n Ingrese el Id del PROPIETARIO que desea Modificar:\t");
+               scanf("%d", &idAux);
+               cleanScreen();
+               for (i=0; i<tamanio;i++)
+                            {
+                                if (peliculas[i].idPelicula== idAux)
+                                    {
+                                    flagchange=1;
+                                    printf("\n----------------------------");
+                                    printf("\nLa pelicula a modificar es\n");
+                                    mostrarPeliculaIndividual(peliculas[i]);
+                                    printf("\n-------------------------------------------------------------------------\n");
+                                    confirm =preguntarSiNo("\nSeguro que desea modificar el propietario:\t");
+                                    if( confirm == 's')
+                                    {
+
+                                    do {
+                                    printf("\n\n\n  == OPCIONES DE DATOS A MODIFICAR == \n\n 1- Titulo \n 2- Direccion \n 3- Tarjeta de Credito \n \t \t Que dato desea modificar?\t");
+                                    scanf ("%d", &opcion);
+                                    switch(opcion)
+                                        {
+                                        case 1:
+                                             printf("Ingrese el NUEVO Titulo:\t");
+                                            fflush(stdin);
+                                            gets(auxmodi.titulo);
+                                             break;
+                                        case 2:
+                                          printf("\n----------------------\n");
+                                            printf("Ingrese El Genero\n");
+                                            printf("----------------------");
+                                            printf("\n 1- Terror\t");
+                                            printf("\n 2- Comedia\t");
+                                            printf("\n 3- Drama\t");
+                                            printf("\n 4- Dibujos Animados\t");
+                                            printf("\n 5- Accion\t");
+                                            printf("\n 6- Ciencia Ficcion\t");
+                                            printf("\n 7- Otro\t");
+                                              do {
+                                            printf("\n \nSeleccione la opcion deseada\t");
+                                            scanf("%d", &auxGenero);
+
+                                                        switch (auxGenero)
+                                                        {
+                                                        case 1:
+                                                            strcpy(auxmodi.genero, "Terror");
+                                                            break;
+                                                        case 2:
+                                                            strcpy(auxmodi.genero, "Comedia");
+                                                            break;
+                                                        case 3:
+                                                            strcpy(auxmodi.genero, "Drama");
+                                                            break;
+                                                        case 4:
+                                                            strcpy(auxmodi.genero, "DA");
+                                                            break;
+                                                        case 5:
+                                                            strcpy(auxmodi.genero, "Accion");
+                                                            break;
+                                                        case 6:
+                                                            strcpy(auxmodi.genero, "CF");
+                                                            break;
+                                                        case 7:
+                                                            strcpy(auxmodi.genero, "Otro");
+                                                            break;
+                                                        case 8:
+                                                            strcpy(auxmodi.genero, "Otro");
+                                                            break;
+                                                        default:
+                                                            fflush(stdin);
+                                                            printf("\n-----------------------------\n");
+                                                            printf(" NO INGRESO UNA OPCION VALIDA\t");
+                                                             printf("\n-----------------------------\n");
+                                                            auxGenero=0;
+                                                            break;
+                                                        }
+                                            }while (auxGenero==0);
+                                            break;
+                                        case 3:
+
+                                        printf("\nIngrese Duracion: \t");
+                                       // fflush(stdin);
+                                        scanf("%d",&auxmodi.duracion);
+                                        break;
+                                        case 4:
+                                            printf("Ingrese  NUEVA Descripcion\t");
+                                            fflush(stdin);
+                                            gets(auxmodi.descripcion);
+                                        break;
+                                        case 5:
+                                            printf("Ingrese URL\t");
+                                            fflush(stdin);
+                                            gets(auxmodi.linkImagen);// eventualmente arma fucniona para validar estos ingresois
+                                        break;
+                                        default:
+                                            fflush(stdin);
+                                            printf("\n -------- No ingreso una opcion valida -----------");
+                                            opcion=0;
+                                        break;
+                                           }
+                                           auxmodi.estado=1;
+                                    }while (opcion ==0);
+                                    do{
+                                        seguro=preguntarSiNo("\nSeguro desea modificar el registo\n");
+                                        mostrarPeliculaIndividual(peliculas[i]);
+                                        printf("\n---------------------------------------------\n");
+                                        printf("\nPOR\n");
+                                        mostrarPeliculaIndividual(auxmodi);
+                                        printf("\n---------------------------------------------\n");
+                                        if ( seguro='s')
+                                        {
+                                            peliculas[i]=auxmodi;
+                                            printf("\n\n\n======================\n Propietario modificado\n======================\n");
+                                        }
+
+
+                                    }while (seguro=='n');
+                                    break;
+                                    }// fin IF PREGUNTA S N
+                                    else
+                                    {
+                                    printf("\n\n=====================================\n");
+                                    printf("OPERACION CANCELADA");
+                                    printf("\n=====================================\n");
+                                    }
+
+                                    break;
+                                    } //FIN IF SI
+                            } //FIN FOR
+
+               if (flagchange==0)
+                         {
+
+                            printf("\n\n=====================================\n");
+                            printf("PROPIETARIO NO EXISTE");
+                            printf("\n=====================================\n");
+
+                         }
+               }// FIN FLAG !=0
+
+                else
+                {
+                printf("\n\n=====================================\n");
+                printf("NO HAY PROPIETARIOS CARGADOS");
+                printf("\n=====================================\n");
+                }
+
+
+ }

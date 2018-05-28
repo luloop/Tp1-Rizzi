@@ -100,12 +100,17 @@ int guardarEnArchivo(EMovie peliculas [], int cantidad)
  *
  */
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 int guardarArchivoABM (EMovie peliculas [], int cantidad)
 {
     char guardar;
 
-        if (cantidad>0)
-            {
             guardar=preguntarSiNo("\nDesea guardar los cambios realizados?");
             if (guardar == 's')
             {
@@ -126,13 +131,7 @@ int guardarArchivoABM (EMovie peliculas [], int cantidad)
             }
 
             cleanScreen();
-            }
-        else
-        {
-        printf("\n-------------------------------\n");
-        printf("NO HAY NADA PARA GUARDAR\n");
-        printf("-------------------------------\n");
-        }
+
 
         return cantidad;
 }
@@ -145,7 +144,7 @@ int guardarArchivoABM (EMovie peliculas [], int cantidad)
  * \return
  *
  */
-int cargarDesdeArchivo(EMovie peliculas[])
+int cargarDesdeArchivo(EMovie peliculas[], int cantidad)
 {
 	FILE *pelis;
 	int i=0;
@@ -164,7 +163,7 @@ int cargarDesdeArchivo(EMovie peliculas[])
 
 	if(flag==0)
 	{
-        while(feof(pelis)==0)
+        while(feof(pelis)==0 && i<cantidad)
         {
         fread(&peliculas[i],sizeof(EMovie),1,pelis);
         i++;
@@ -178,15 +177,30 @@ int cargarDesdeArchivo(EMovie peliculas[])
 
 ////////////////////////////////////////
 
-int buscarLibre(EMovie losAlumnos[], int cantidad)
+int buscarLibre(EMovie peliculas[], int cantidad)
 {
 	int index=-1;
 	int i;
 	for( i=0; i < cantidad; i++)
-	   if(losAlumnos[i].estado==0)
+	   if(peliculas[i].estado==0)
         {
 		index=i;
 		break;
 	   }
 	return index;
+}
+
+
+////////////////
+int contadorArray (EMovie peliculas [], int tamanio)
+{
+    int i;
+    for (i=0; i<tamanio; i++)
+    {
+        if ( peliculas[i].estado==1)
+        {
+            return 1;
+
+        }
+    }
 }
