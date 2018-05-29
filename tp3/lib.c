@@ -283,3 +283,74 @@ void pedirGenero (EMovie pelicula[], int i)
                     printf("\n-----------------------------\n");
 
 }
+
+  void asignarNombrehtml (EMovie pelicula [], int j, int lenLink)
+  {
+      char buffer [50];
+      char aux [lenLink];
+      int i;
+
+      strcpy(buffer, pelicula[j].titulo);
+      strcat(buffer,"-");
+      strcat(buffer,pelicula[j].genero);
+
+      for (i=0; i<lenLink-5; i++)
+        {
+            aux[i]=buffer[i];
+        }
+
+        strcat(aux,".html");
+
+
+      strcpy(pelicula[j].nombreArchivo, aux);
+      RemoveSpaces(pelicula[j].nombreArchivo);
+
+      printf("\nel nombre del archivo %s\t",pelicula[j].nombreArchivo);
+
+ }
+
+
+void pedirDescripcion(EMovie pelicula [], int j, int lenDescrip)
+  {
+      char buffer [1500];
+      char aux [lenDescrip];
+      int i;
+
+       printf("Ingrese Descripcion\t");
+       fflush(stdin);
+       gets(buffer);
+
+      for (i=0; i<lenDescrip; i++)
+        {
+            aux[i]=buffer[i];
+        }
+
+      strcpy(pelicula[j].descripcion, aux);
+
+      printf("\nla descripcioon es  %s\t\n",pelicula[j].descripcion);
+
+ }
+
+
+void pedirLink(EMovie pelicula [], int j, int lenLink)
+  {
+      char buffer [1500];
+      char aux [lenLink];
+      int i;
+
+     printf("Ingrese URL\t");
+     fflush(stdin);
+     gets(buffer);
+
+      for (i=0; i<lenLink; i++)
+        {
+            aux[i]=buffer[i];
+        }
+
+      strcpy(pelicula[j].linkImagen, aux);
+
+      printf("\nel link  es  %s\t\n",pelicula[j].linkImagen);
+
+ }
+
+

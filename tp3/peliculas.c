@@ -53,42 +53,31 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
 
     pedirTitulo(pelicula, i, TEXTOSCORTOS);
     pedirGenero(pelicula, i);
+    asignarNombrehtml(pelicula, i, TEXTOSLINK);
 
-                strcpy(pelicula[i].nombreArchivo, pelicula[i].titulo);
-                strcat(pelicula[i].nombreArchivo,"-");
-                strcat(pelicula[i].nombreArchivo,pelicula[i].genero);
-                strcat(pelicula[i].nombreArchivo,".html");
+    printf("\nIngrese Duracion: \t");
+    scanf("%d",&pelicula[i].duracion);
+    while(! (pelicula[i].duracion<300 && pelicula[i].duracion>0))
+    {
+        fflush(stdin);
+        printf("\nError - Ingrese Duracion Valida: \t");
+        scanf("%d",&pelicula[i].duracion);
+    }
+     pedirDescripcion(pelicula, i, TEXTOSDESCRIPCION);
+     pedirLink(pelicula, i, TEXTOSLINK);
+     pelicula[i].puntaje=devolverPuntaje();
+     pelicula[i].estado=1;
+     cargado=1;
+     printf("\n");
 
-                pelicula[i].htmlCreado=0;
+     seguir = preguntarSiNo("Cargar otra Pelicula?");
+    if (seguir=='n')
+        {
+        break;
+        }
 
-
-                printf("\nIngrese Duracion: \t");
-               // fflush(stdin);
-                scanf("%d",&pelicula[i].duracion);
-
-                printf("Ingrese Descripcion\t");
-                fflush(stdin);
-                gets(pelicula[i].descripcion);
-
-                pelicula[i].puntaje=devolverPuntaje();
-
-                printf("Ingrese URL\t");
-                fflush(stdin);
-                gets(pelicula[i].linkImagen);// eventualmente arma fucniona para validar estos ingresois
-
-                pelicula[i].estado=1;
-
-                cargado=1;
-                printf("\n");
-
-                seguir = preguntarSiNo("Cargar otra Pelicula?");
-                if (seguir=='n')
-                {
-                break;
-                }
-
-                } //if
-            } while (seguir == 's');
+        } //if !=-1
+    } while (seguir == 's');
 
 return cargado;
 }
@@ -239,6 +228,7 @@ int htmlArmado(EMovie peliculass[],int tamanio)
     int flag2=0;
     char puntaje[10];
     char auxDuracion[10];
+    char fileNam [TEXTOSLINK];
 
         listarPeliculas(peliculass, tamanio, 1);
         printf("\n========================================================================\n");
@@ -300,10 +290,7 @@ int htmlArmado(EMovie peliculass[],int tamanio)
 
             "</html>");
 
-    char fileNam [100];
-       // strcpy(fileNam, "C:/Users/lucil/Desktop/tp_laboratorio_1/tp3/template/");
-     //   strcpy(fileNam, peliculass[i].nombreArchivo);
-    RemoveSpaces(peliculass[i].nombreArchivo);
+
     sprintf(fileNam, peliculass[i].nombreArchivo);
     archivo = fopen(fileNam,"w");
     //////////////////

@@ -6,9 +6,6 @@
 #define TEXTOSDESCRIPCION 200
 #define TEXTOSLINK 50
 
-
-
-
 typedef struct{
     char titulo[TEXTOSCORTOS];
     char genero[TEXTOSCORTOS];

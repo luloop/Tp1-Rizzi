@@ -1,3 +1,16 @@
+/********************************************************
+* Programa : Tp3 laboratorio1_programacion1             *
+*                                                       *
+* Objetivo : ARCHIVOS Y PUNTEROS                        *
+*                                                       *
+*                                                       *
+*                                                       *
+* Version: 2                                            *
+* Autor: Lucila Rizzi                                   *
+* Año:2018                                              *
+*                                                       *
+********************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -64,7 +77,7 @@ int main()
                 cleanScreen();
                 break;
         case 3:
-                if (contador>0 || flagPelis!=0)
+                if (contador>0)
                 {
                  flagPelis= modificarPelicula(peliculas, CANTPELIS, contador);
                 }
