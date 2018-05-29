@@ -50,66 +50,9 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
         {
     pelicula[i].idPelicula = i+10;
     printf("\n \n---- NUEVO INGRESO DE PELICULA %d----\t", i+1);
-    printf("\n \nIngrese El Titulo\t");
-    fflush(stdin);
-    gets(pelicula[i].titulo);
-    /////////////pasar a funcion
 
-    printf("\n----------------------\n");
-    printf("Ingrese El Genero\n");
-    printf("----------------------");
-    printf("\n 1- Terror\t");
-    printf("\n 2- Comedia\t");
-    printf("\n 3- Drama\t");
-    printf("\n 4- Dibujos Animados\t");
-    printf("\n 5- Accion\t");
-    printf("\n 6- Ciencia Ficcion\t");
-    printf("\n 7- Otro\t");
-      do {
-            fflush(stdin);
-    printf("\n \nSeleccione la opcion deseada\t");
-    scanf("%d", &auxGenero);
-
-                switch (auxGenero)
-                {
-                case 1:
-                    strcpy(pelicula[i].genero, "Terror");
-                    break;
-                case 2:
-                    strcpy(pelicula[i].genero, "Comedia");
-                    break;
-                case 3:
-                    strcpy(pelicula[i].genero, "Drama");
-                    break;
-                case 4:
-                    strcpy(pelicula[i].genero, "DA");
-                    break;
-                case 5:
-                    strcpy(pelicula[i].genero, "Accion");
-                    break;
-                case 6:
-                    strcpy(pelicula[i].genero, "CF");
-                    break;
-                case 7:
-                    strcpy(pelicula[i].genero, "Otro");
-                    break;
-                case 8:
-                    strcpy(pelicula[i].genero, "Otro");
-                    break;
-                default:
-                    fflush(stdin);
-                    printf("\n-----------------------------\n");
-                    printf(" NO INGRESO UNA OPCION VALIDA\t");
-                     printf("\n-----------------------------\n");
-                    auxGenero=0;
-                    break;
-                }
-    }while (auxGenero==0);
-
-                    printf("\n-----------------------------\n");
-                    printf("El genero es %s \t",pelicula[i].genero );
-                    printf("\n-----------------------------\n");
-                ////////////////////////
+    pedirTitulo(pelicula, i, TEXTOSCORTOS);
+    pedirGenero(pelicula, i);
 
                 strcpy(pelicula[i].nombreArchivo, pelicula[i].titulo);
                 strcat(pelicula[i].nombreArchivo,"-");
@@ -157,21 +100,17 @@ return cargado;
  * \return
  *
  */
-int bajaPelicula (EMovie peliculaa[], int tamanio, int flag)
+int bajaPelicula (EMovie peliculaa[], int tamanio, int contador, int flag2)
 {
 int flagDelete=0;
 int i;
 int idAux;
 char confirm;
 
-     if(flag==0)
-            {
-                printf("\n\n\n======================\n NO HAY PELICULAS CARGADAS\n======================\n");
-            }
-        else
-            {
+               if (contadorArray(peliculaa, tamanio)||flag2!=0)
+               {
+                listarPeliculas(peliculaa, tamanio, 1);
 
-                listarPeliculas(peliculaa, tamanio, flag, 1);
                 printf("\n========================================================================\n");
                 printf("\n\n Ingrese el Id de la peliculaa que desea dar de BAJA:\t");
                 scanf("%d", &idAux);
@@ -206,18 +145,24 @@ char confirm;
 
 
                             }//fin for
+                    }
+                else
+                    {
+                            printf("\n\n==========================================\n");
+                            printf("NO HAY PELICULAS CARGADAS");
+                            printf("\n==========================================\n");
+                            ;
+                    }
 
-
-               }
-                  if (flagDelete==0)
+                if (flagDelete==0)
                     {
                             printf("\n\n==========================================\n");
                             printf("La peliculaa que desea borrar no existe");
                             printf("\n==========================================\n");
                             ;
                     }
+    }
 
-}
 
 
 /** \brief
@@ -254,15 +199,11 @@ void mostrarUnaPeliculaParaListado(EMovie peli)
  * \return
  *
  */
-void listarPeliculas(EMovie peliculass[], int tamanio, int flag, int estado)
+void listarPeliculas(EMovie peliculass[], int tamanio, int estado)
 {
     int i;
-    if(flag==0)
-            {
-                printf("\n\n\n======================\n NO HAY PELICULAS CARGADAS\n======================\n");
-            }
-            else
-            {  printf("\n\n\n========================\n PELICULAS CARGADOS\n========================\n");
+
+      printf("\n\n\n========================\n PELICULAS CARGADOS\n========================\n");
 
             printf("\n  Id   Titulo\t      Genero\t    Duracion\t  Puntaje\tEstado");
 
@@ -272,8 +213,7 @@ void listarPeliculas(EMovie peliculass[], int tamanio, int flag, int estado)
 
                     if(peliculass[i].estado==estado)
                     {
-                   // mostrarUnaPeliculaParaListado(peliculass[i]);
-                   mostrarUnaPeliculaParaListado(peliculass[i]);
+                    mostrarUnaPeliculaParaListado(peliculass[i]);
                         if ((i+1)%25==0 && i!=0) //CADA 25 PELICULAS HAGA UNA PAUSA
                         {  {
                             printf("\n");
@@ -285,8 +225,6 @@ void listarPeliculas(EMovie peliculass[], int tamanio, int flag, int estado)
                 }
                 printf("\n========================================================================\n");
             }
-
-}
 
 
 
@@ -302,7 +240,7 @@ int htmlArmado(EMovie peliculass[],int tamanio)
     char puntaje[10];
     char auxDuracion[10];
 
-        listarPeliculas(peliculass, tamanio, flag, 1);
+        listarPeliculas(peliculass, tamanio, 1);
         printf("\n========================================================================\n");
         printf("\n\n Ingrese el Id de la peliculaa que desea generar el HTML:\t");
         scanf("%d", &idAux);
@@ -422,7 +360,7 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
 
               if(flag!=0)
                {
-               listarPeliculas(peliculas, tamanio, flag, 1);
+               listarPeliculas(peliculas, tamanio, 1);
                printf("\n============================================================================\n");
                printf("\n\n Ingrese el Id del PROPIETARIO que desea Modificar:\t");
                scanf("%d", &idAux);

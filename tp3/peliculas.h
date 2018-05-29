@@ -2,18 +2,23 @@
 #ifndef PELICULAS_H_INCLUDED
 #define PELICULAS_H_INCLUDED
 
+#define TEXTOSCORTOS 20
+#define TEXTOSDESCRIPCION 200
+#define TEXTOSLINK 50
+
+
 
 
 typedef struct{
-    char titulo[20];
-    char genero[20];
+    char titulo[TEXTOSCORTOS];
+    char genero[TEXTOSCORTOS];
     int duracion;
-    char descripcion[50];
+    char descripcion[TEXTOSDESCRIPCION];
     float puntaje;
-    char linkImagen[50];
+    char linkImagen[TEXTOSLINK];
     int estado;
     int idPelicula;
-    char nombreArchivo[100];
+    char nombreArchivo[TEXTOSCORTOS*2];
     int htmlCreado;
 
 }EMovie;
@@ -23,7 +28,7 @@ char preguntarSiNo ( char texto []);
 int agregarPelicula(EMovie [], int );
 void mostrarPeliculaIndividual(EMovie peli);
 
-int bajaPelicula(EMovie [], int, int );
+int bajaPelicula(EMovie [], int, int, int );
 
 /**
  *  Borra una pelicula del archivo binario

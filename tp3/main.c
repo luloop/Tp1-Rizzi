@@ -27,13 +27,11 @@ int main()
         {
         printf("No se pudo abrir el fichero");
         }
-	else
-        {
-         flagPelis=contadorArray(peliculas, CANTPELIS);
-        }
 ////////////////
+
 	while(seguir==1)
     {
+        contador=contadorArray(peliculas, CANTPELIS);
 
         printf("\n-------------------------------\n");
         printf("-- BIENVENIDO AL VIDEO CLUB --\n");
@@ -55,28 +53,43 @@ int main()
                 cleanScreen();
                 break;
         case 2:
-                if (flagPelis==1)
+                if (contador>0 )
                 {
-                    flagPelis=contadorArray(peliculas, CANTPELIS);
-                 flagPelis= bajaPelicula(peliculas, CANTPELIS, flagPelis);
+                 flagPelis= bajaPelicula(peliculas, CANTPELIS, contador, flagPelis);
+                }
+                else
+                {
+                    printf("\n\nNO HAY PELICULAS DISPONIBLES EN EL ARCHIVO ORIGINAL\n");
                 }
                 cleanScreen();
                 break;
         case 3:
-                if (flagPelis==1)
+                if (contador>0 || flagPelis!=0)
                 {
-                 flagPelis= modificarPelicula(peliculas, CANTPELIS, flagPelis);
+                 flagPelis= modificarPelicula(peliculas, CANTPELIS, contador);
+                }
+                else
+                {
+                     printf("\n\nNO HAY PELICULAS DISPONIBLES EN EL ARCHIVO ORIGINAL\n");
                 }
                 cleanScreen();
                 break;
         case 4:
-            flagHtml=htmlArmado(peliculas, CANTPELIS);
+            if (contador>0 || flagPelis!=0)
+                {
+                 flagHtml=htmlArmado(peliculas, CANTPELIS);
+                }
+            else
+                {
+                     printf("\n\nNO HAY PELICULAS DISPONIBLES EN EL ARCHIVO ORIGINAL\n");
+                }
+            cleanScreen();
             break;
         case 5:
-                if (flagPelis!=0)
-               {
-               flagPelis=guardarArchivoABM(peliculas, CANTPELIS);
-               }
+                if (contador>0 || flagPelis!=0)
+                   {
+                   flagPelis=guardarArchivoABM(peliculas, CANTPELIS);
+                   }
                else
                    {
                     printf("\n-------------------------------\n");
@@ -86,16 +99,16 @@ int main()
                cleanScreen();
                break;
         case 6:
-            listarPeliculas(peliculas, CANTPELIS, flagPelis, 1);
+            listarPeliculas(peliculas, CANTPELIS, 1);
             printf("\n-------------------------------\n");
                     printf("estado 2\n");
-            listarPeliculas(peliculas, CANTPELIS, flagPelis,2);
+            listarPeliculas(peliculas, CANTPELIS,2);
              printf("\n-------------------------------\n");
                     printf("estado 0\n");
-            listarPeliculas(peliculas, CANTPELIS, flagPelis, 0);
+            listarPeliculas(peliculas, CANTPELIS, 0);
           break;
         case 0:
-               if (contador!=0)
+               if (contador>0 || flagPelis!=0)
                {
                 printf("\n-------------------------------\n");
                 salir=preguntarSiNo("Dese Guardar antes de salir?");
