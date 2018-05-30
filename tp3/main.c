@@ -109,7 +109,6 @@ int main()
                     printf("No hay nuevo ingresos sin guardar\n");
                     printf("-------------------------------\n");
                    }
-               cleanScreen();
                break;
         case 6:
             listarPeliculas(peliculas, CANTPELIS, 1);

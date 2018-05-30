@@ -15,7 +15,7 @@ typedef struct{
     char linkImagen[TEXTOSLINK];
     int estado;
     int idPelicula;
-    char nombreArchivo[TEXTOSCORTOS*2];
+    char nombreArchivo[TEXTOSLINK];
     int htmlCreado;
 
 }EMovie;

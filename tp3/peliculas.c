@@ -163,8 +163,11 @@ char confirm;
  */
 void mostrarPeliculaIndividual(EMovie peli)
 {
- printf("\nIdPelicula %d \t -- Titulo: %8s -- Genero:%5s -- "
-        "Duracion: %d --Puntaje: %0.2f -e: %d" , peli.idPelicula,peli.titulo,peli.genero, peli.duracion, peli.puntaje, peli.estado);
+ printf("\n------------------------------------------\n");
+ printf("\nId: %d \nTitulo: %8s \nGenero:%5s \n"
+        "Duracion: %d \nDescripcion %30s\nPuntaje: %0.2f\n Url Imagen: %s "
+        "\n eEstaDo: %d" , peli.idPelicula,peli.titulo,peli.genero, peli.duracion,peli.descripcion, peli.puntaje, peli.linkImagen,peli.estado);
+         printf("\n------------------------------------------\n");
 }
 
 
@@ -238,6 +241,8 @@ int htmlArmado(EMovie peliculass[],int tamanio)
         for (i=0; i<tamanio;i++)
         {
 
+        if (peliculass[i].estado==1 )
+            {
         strcat(buffer,"<html lang='en'><head><meta charset='utf-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'>"
        " <meta name='viewport' content='width=device-width, initial-scale=1'>"
         "<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->"
@@ -279,7 +284,6 @@ int htmlArmado(EMovie peliculass[],int tamanio)
             "<!-- Placeholder Images -->"
             "<script src='js/holder.min.js'></script>"
             "</body>"
-
             "</html>");
 
 
@@ -292,13 +296,19 @@ int htmlArmado(EMovie peliculass[],int tamanio)
         printf("\n-----------------------------\n");
         printf(" NULLLLL\t");
         printf("\n-----------------------------\n");
+        return 0;
 		}
 
     fprintf(archivo,buffer);
+        printf("\n-----------------------------\n");
+        printf(" pelicula %s en html\t", peliculass[i].nombreArchivo);
+        printf("\n-----------------------------\n");
 
     fclose(archivo);
+        }
+     }
     return 1;
-    }
+
 
 
 }
@@ -338,9 +348,8 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
                {
                listarPeliculas(peliculas, tamanio, 1);
                printf("\n============================================================================\n");
-               printf("\n\n Ingrese el Id del PROPIETARIO que desea Modificar:\t");
+               printf("\n\n Ingrese el Id de la Pelicula que desea Modificar:\t");
                scanf("%d", &idAux);
-               cleanScreen();
                for (i=0; i<tamanio;i++)
                             {
                                 if (peliculas[i].idPelicula== idAux)
@@ -350,7 +359,7 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
                                     printf("\nLa pelicula a modificar es\n");
                                     mostrarPeliculaIndividual(peliculas[i]);
                                     printf("\n-------------------------------------------------------------------------\n");
-                                    confirm =preguntarSiNo("\nSeguro que desea modificar el propietario:\t");
+                                    confirm =preguntarSiNo("\nSeguro que desea modificar la pelicula:\t");
                                     if( confirm == 's')
                                     {
                                         auxmodi[0]=peliculas[i];
@@ -358,6 +367,7 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
                                     do {
                                     printf("\n\n\n  == OPCIONES DE DATOS A MODIFICAR == \n\n 1- Titulo \n 2- Genero\n 3- Duracion \n 4- Descripcion\n 5- Link \n \t \t Que dato desea modificar?\t");
                                     scanf ("%d", &opcion);
+                                    printf("\n\n");
                                     switch(opcion)
                                         {
                                         case 1:
@@ -389,23 +399,29 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
                                             break;
                                            }
                                         }while (opcion ==0);
+                                    cleanScreen();
                                     do{
+                                        printf("\nPelicula Original\n");
                                         mostrarPeliculaIndividual(peliculas[i]);
-                                        printf("\n---------------------------------------------\n");
                                         printf("\nPOR\n");
                                         mostrarPeliculaIndividual(auxmodi[0]);
-                                        printf("\n---------------------------------------------\n");
-                                        seguro=preguntarSiNo("\nSeguro desea modificar el registo\n");
+                                        seguro=preguntarSiNo("\nSeguro desea modificar el registo\t");
 
-                                        if ( seguro='s')
+                                        if (seguro=='s')
                                         {
-                                            peliculas[i]=auxmodi[0];
-                                           asignarNombrehtml(peliculas[i],i,TEXTOSLINK);
+                                           peliculas[i]=auxmodi[0];
+                                           asignarNombrehtml(peliculas,i,TEXTOSLINK);
 
                                             printf("\n\n\n======================\n Pelicula modificada\n======================\n");
                                         }
+                                        else
+                                        {
+                                        printf("\n\n=====================================\n");
+                                        printf("OPERACION CANCELADA");
+                                        printf("\n=====================================\n");
+                                        }
 
-                                    }while (seguro=='n');
+                                    }while (seguro!='s');
                                     break;
                                     }// fin IF PREGUNTA S N
                                     else
@@ -423,7 +439,7 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
                          {
 
                             printf("\n\n=====================================\n");
-                            printf("PROPIETARIO NO EXISTE");
+                            printf(" PELICULA NO EXISTE");
                             printf("\n=====================================\n");
 
                          }
@@ -432,7 +448,7 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
                 else
                 {
                 printf("\n\n=====================================\n");
-                printf("NO HAY PROPIETARIOS CARGADOS");
+                printf("NO HAY PELICULAS CARGADOS");
                 printf("\n=====================================\n");
                 }
 
