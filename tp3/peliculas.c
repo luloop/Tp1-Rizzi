@@ -51,26 +51,26 @@ int agregarPelicula(EMovie pelicula[], int tamanio)
     pelicula[i].idPelicula = i+10;
     printf("\n \n---- NUEVO INGRESO DE PELICULA %d----\t", i+1);
 
-    pedirTitulo(pelicula, i, TEXTOSCORTOS);
-    pedirGenero(pelicula, i);
-    asignarNombrehtml(pelicula, i, TEXTOSLINK);
-
-    printf("\nIngrese Duracion: \t");
+    pedirTitulo(pelicula, i, TEXTOSCORTOS); //TITULO
+    pedirGenero(pelicula, i);//GENERO
+    asignarNombrehtml(pelicula, i, TEXTOSLINK);//HTML
+    printf("\nIngrese Duracion: \t"); //DURACION
     scanf("%d",&pelicula[i].duracion);
-    while(! (pelicula[i].duracion<300 && pelicula[i].duracion>0))
-    {
-        fflush(stdin);
-        printf("\nError - Ingrese Duracion Valida: \t");
-        scanf("%d",&pelicula[i].duracion);
-    }
-     pedirDescripcion(pelicula, i, TEXTOSDESCRIPCION);
-     pedirLink(pelicula, i, TEXTOSLINK);
-     pelicula[i].puntaje=devolverPuntaje();
-     pelicula[i].estado=1;
-     cargado=1;
+            while(! (pelicula[i].duracion<300 && pelicula[i].duracion>0))
+            {
+                fflush(stdin);
+                printf("\nError - Ingrese Duracion Valida: \t");
+                scanf("%d",&pelicula[i].duracion);
+            }
+     pedirDescripcion(pelicula, i, TEXTOSDESCRIPCION);//DESCRIPCION
+     pedirLink(pelicula, i, TEXTOSLINK); // LINK
+     pelicula[i].puntaje=devolverPuntaje(); //PUNTAJE RANDOM
+     pelicula[i].estado=1; //ESTADO
+     cargado=1; //FLAG
+     mostrarPeliculaIndividual(pelicula[i]); //MOSTRAR DATOS INGRESADOS
      printf("\n");
 
-     seguir = preguntarSiNo("Cargar otra Pelicula?");
+     seguir = preguntarSiNo("Cargar otra Pelicula?"); // CONFIRMACION PARA CARGAR
     if (seguir=='n')
         {
         break;
@@ -154,7 +154,7 @@ char confirm;
 
 
 
-/** \brief
+/** \brief mostar una pelicula individual en una sola linea con titulo
  *
  * \param
  * \param
@@ -168,7 +168,7 @@ void mostrarPeliculaIndividual(EMovie peli)
 }
 
 
-/** \brief
+/** \brief mostar una pelicula individual en una sola linea  sin titulos
  *
  * \param
  * \param
@@ -181,7 +181,7 @@ void mostrarUnaPeliculaParaListado(EMovie peli)
 }
 
 
-/** \brief
+/** \brief armar listado de peliculas con encabezado
  *
  * \param
  * \param
@@ -216,8 +216,13 @@ void listarPeliculas(EMovie peliculass[], int tamanio, int estado)
             }
 
 
-
-
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 int htmlArmado(EMovie peliculass[],int tamanio)
 {
     FILE* archivo;
@@ -230,23 +235,10 @@ int htmlArmado(EMovie peliculass[],int tamanio)
     char auxDuracion[10];
     char fileNam [TEXTOSLINK];
 
-        listarPeliculas(peliculass, tamanio, 1);
-        printf("\n========================================================================\n");
-        printf("\n\n Ingrese el Id de la peliculaa que desea generar el HTML:\t");
-        scanf("%d", &idAux);
-        printf("\n========================================================================\n");
         for (i=0; i<tamanio;i++)
-                            {
-                                if (peliculass[i].idPelicula==idAux)
-                                {
-                                    flag2=1;
-                                    break;
-                                }
-                            }
+        {
 
-      if(flag2==1)
-      {
-       strcat(buffer,"<html lang='en'><head><meta charset='utf-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'>"
+        strcat(buffer,"<html lang='en'><head><meta charset='utf-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'>"
        " <meta name='viewport' content='width=device-width, initial-scale=1'>"
         "<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->"
         "<title>Lista peliculas</title>"
@@ -295,6 +287,7 @@ int htmlArmado(EMovie peliculass[],int tamanio)
     archivo = fopen(fileNam,"w");
     //////////////////
    if(archivo== NULL)
+
 		{
         printf("\n-----------------------------\n");
         printf(" NULLLLL\t");
@@ -306,14 +299,7 @@ int htmlArmado(EMovie peliculass[],int tamanio)
     fclose(archivo);
     return 1;
     }
-    else
-    {
-        fflush(stdin);
-        printf("\n-----------------------------\n");
-        printf(" NO INGRESO UNA PELICULA VALIDA\t");
-        printf("\n-----------------------------\n");
-        return 0;
-    }
+
 
 }
 
@@ -326,7 +312,10 @@ void RemoveSpaces(char* source)
   {
     *i = *j++;
     if(*i != ' ')
-      i++;
+    {
+        i++;
+    }
+
   }
   *i = 0;
 }
@@ -341,7 +330,7 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
      int confirm;
      int flagchange=0;
      int opcion;
-     EMovie auxmodi;
+     EMovie auxmodi[2];
      char seguro='n';
      int auxGenero;
 
@@ -364,105 +353,57 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
                                     confirm =preguntarSiNo("\nSeguro que desea modificar el propietario:\t");
                                     if( confirm == 's')
                                     {
+                                        auxmodi[0]=peliculas[i];
 
                                     do {
-                                    printf("\n\n\n  == OPCIONES DE DATOS A MODIFICAR == \n\n 1- Titulo \n 2- Direccion \n 3- Tarjeta de Credito \n \t \t Que dato desea modificar?\t");
+                                    printf("\n\n\n  == OPCIONES DE DATOS A MODIFICAR == \n\n 1- Titulo \n 2- Genero\n 3- Duracion \n 4- Descripcion\n 5- Link \n \t \t Que dato desea modificar?\t");
                                     scanf ("%d", &opcion);
                                     switch(opcion)
                                         {
                                         case 1:
-                                             printf("Ingrese el NUEVO Titulo:\t");
-                                            fflush(stdin);
-                                            gets(auxmodi.titulo);
-                                             break;
+                                            pedirTitulo(auxmodi, 0, TEXTOSCORTOS);
+                                            break;
                                         case 2:
-                                          printf("\n----------------------\n");
-                                            printf("Ingrese El Genero\n");
-                                            printf("----------------------");
-                                            printf("\n 1- Terror\t");
-                                            printf("\n 2- Comedia\t");
-                                            printf("\n 3- Drama\t");
-                                            printf("\n 4- Dibujos Animados\t");
-                                            printf("\n 5- Accion\t");
-                                            printf("\n 6- Ciencia Ficcion\t");
-                                            printf("\n 7- Otro\t");
-                                              do {
-                                            printf("\n \nSeleccione la opcion deseada\t");
-                                            scanf("%d", &auxGenero);
-
-                                                        switch (auxGenero)
-                                                        {
-                                                        case 1:
-                                                            strcpy(auxmodi.genero, "Terror");
-                                                            break;
-                                                        case 2:
-                                                            strcpy(auxmodi.genero, "Comedia");
-                                                            break;
-                                                        case 3:
-                                                            strcpy(auxmodi.genero, "Drama");
-                                                            break;
-                                                        case 4:
-                                                            strcpy(auxmodi.genero, "DA");
-                                                            break;
-                                                        case 5:
-                                                            strcpy(auxmodi.genero, "Accion");
-                                                            break;
-                                                        case 6:
-                                                            strcpy(auxmodi.genero, "CF");
-                                                            break;
-                                                        case 7:
-                                                            strcpy(auxmodi.genero, "Otro");
-                                                            break;
-                                                        case 8:
-                                                            strcpy(auxmodi.genero, "Otro");
-                                                            break;
-                                                        default:
-                                                            fflush(stdin);
-                                                            printf("\n-----------------------------\n");
-                                                            printf(" NO INGRESO UNA OPCION VALIDA\t");
-                                                             printf("\n-----------------------------\n");
-                                                            auxGenero=0;
-                                                            break;
-                                                        }
-                                            }while (auxGenero==0);
+                                          pedirGenero(auxmodi, 0);
                                             break;
                                         case 3:
-
-                                        printf("\nIngrese Duracion: \t");
-                                       // fflush(stdin);
-                                        scanf("%d",&auxmodi.duracion);
-                                        break;
+                                            printf("\nIngrese Duracion: \t"); //DURACION
+                                            scanf("%d",&auxmodi[0].duracion);
+                                            while(! (auxmodi[0].duracion<300 && auxmodi[0].duracion>0))
+                                            {
+                                            fflush(stdin);
+                                            printf("\nError - Ingrese Duracion Valida: \t");
+                                            scanf("%d",&auxmodi[0].duracion);
+                                            }
+                                            break;
                                         case 4:
-                                            printf("Ingrese  NUEVA Descripcion\t");
-                                            fflush(stdin);
-                                            gets(auxmodi.descripcion);
-                                        break;
+                                        pedirDescripcion(auxmodi, 0, TEXTOSDESCRIPCION);
+                                            break;
                                         case 5:
-                                            printf("Ingrese URL\t");
-                                            fflush(stdin);
-                                            gets(auxmodi.linkImagen);// eventualmente arma fucniona para validar estos ingresois
-                                        break;
+                                           pedirLink(auxmodi, 0, TEXTOSLINK);
+                                            break;
                                         default:
                                             fflush(stdin);
                                             printf("\n -------- No ingreso una opcion valida -----------");
                                             opcion=0;
-                                        break;
+                                            break;
                                            }
-                                           auxmodi.estado=1;
-                                    }while (opcion ==0);
+                                        }while (opcion ==0);
                                     do{
-                                        seguro=preguntarSiNo("\nSeguro desea modificar el registo\n");
                                         mostrarPeliculaIndividual(peliculas[i]);
                                         printf("\n---------------------------------------------\n");
                                         printf("\nPOR\n");
-                                        mostrarPeliculaIndividual(auxmodi);
+                                        mostrarPeliculaIndividual(auxmodi[0]);
                                         printf("\n---------------------------------------------\n");
+                                        seguro=preguntarSiNo("\nSeguro desea modificar el registo\n");
+
                                         if ( seguro='s')
                                         {
-                                            peliculas[i]=auxmodi;
-                                            printf("\n\n\n======================\n Propietario modificado\n======================\n");
-                                        }
+                                            peliculas[i]=auxmodi[0];
+                                           asignarNombrehtml(peliculas[i],i,TEXTOSLINK);
 
+                                            printf("\n\n\n======================\n Pelicula modificada\n======================\n");
+                                        }
 
                                     }while (seguro=='n');
                                     break;

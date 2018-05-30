@@ -305,7 +305,7 @@ void pedirGenero (EMovie pelicula[], int i)
       strcpy(pelicula[j].nombreArchivo, aux);
       RemoveSpaces(pelicula[j].nombreArchivo);
 
-      printf("\nel nombre del archivo %s\t",pelicula[j].nombreArchivo);
+     // printf("\nel nombre del archivo %s\t",pelicula[j].nombreArchivo);
 
  }
 
@@ -327,7 +327,7 @@ void pedirDescripcion(EMovie pelicula [], int j, int lenDescrip)
 
       strcpy(pelicula[j].descripcion, aux);
 
-      printf("\nla descripcioon es  %s\t\n",pelicula[j].descripcion);
+    //  printf("\nla descripcioon es  %s\t\n",pelicula[j].descripcion);
 
  }
 
@@ -349,7 +349,7 @@ void pedirLink(EMovie pelicula [], int j, int lenLink)
 
       strcpy(pelicula[j].linkImagen, aux);
 
-      printf("\nel link  es  %s\t\n",pelicula[j].linkImagen);
+ //     printf("\nel link  es  %s\t\n",pelicula[j].linkImagen);
 
  }
 

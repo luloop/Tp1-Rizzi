@@ -4,7 +4,7 @@
 
 #define TEXTOSCORTOS 20
 #define TEXTOSDESCRIPCION 200
-#define TEXTOSLINK 50
+#define TEXTOSLINK 150
 
 typedef struct{
     char titulo[TEXTOSCORTOS];
