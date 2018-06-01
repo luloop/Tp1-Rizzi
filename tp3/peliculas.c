@@ -38,11 +38,8 @@ void indiceUsuarios (EMovie peliculas[], int tamanio)
 int agregarPelicula(EMovie pelicula[], int tamanio)
 {
     char seguir ='s';
-    int index;
     int cargado=0;
     int i;
-    int auxGenero;
-
 
     do{
        i=buscarLibre(pelicula, tamanio);
@@ -203,7 +200,7 @@ void listarPeliculas(EMovie peliculass[], int tamanio, int estado)
 {
     int i;
 
-      printf("\n========================\n LISTADO DE PELICULAS");
+      printf("\n-----------------------\n LISTADO DE PELICULAS\n-----------------------\n ");
 
             printf("\n  Id   Titulo\t      Genero\t    Duracion\t  Puntaje\tEstado");
 
@@ -239,10 +236,7 @@ int htmlArmado(EMovie peliculass[],int tamanio)
 {
     FILE* archivo;
     char buffer[5000]= {};
-    int idAux;
     int i;
-    int flag =1;
-    int flag2=0;
     char puntaje[10];
     char auxDuracion[10];
     char fileNam [TEXTOSLINK];
@@ -364,7 +358,6 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
      int opcion;
      EMovie auxmodi[2];
      char seguro='n';
-     int auxGenero;
 
               if(flag!=0)
                {
@@ -434,6 +427,7 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
                                                     asignarNombrehtml(peliculas,i,TEXTOSLINK);
 
                                                     printf("\n\n\n======================\n Pelicula modificada\n======================\n");
+                                                    return 1;
                                                  }
                                                 else
                                                 {
@@ -485,7 +479,7 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
                 printf("\n=====================================\n");
                 }
 
-
+ return 0;
  }
 
 /** \brief lista todo
@@ -496,13 +490,13 @@ int modificarPelicula(EMovie peliculas[], int tamanio, int flag)
  */
   void listarTodo ( EMovie peliculas [], int cant)
  {
-            printf("-------------------------------");
+            printf("\n");
             printf("ESTADO 1 - PELICULAS ACTIVAS");
             listarPeliculas(peliculas, cant, 1);
-            printf("-------------------------------");
+            printf("\n");
             printf("ESTADO 2 - BORRADAS DEL LISTAR PERO NO DE SISTEMA");
             listarPeliculas(peliculas, cant,2);
-            printf("-------------------------------");
+            printf("\n");
             printf("ESTADO 0 - DISPONIBLE\n");
             listarPeliculas(peliculas, cant, 0);
  }
@@ -521,13 +515,12 @@ int htmlLISTADO(EMovie peliculass[],int tamanio)
 {
     FILE* archivo;
     char buffer[5000]= {};
-    int idAux;
+    //int idAux;
     int i;
-    int flag =1;
-    int flag2=0;
+/*
     char puntaje[10];
     char auxDuracion[10];
-    char fileNam [TEXTOSLINK];
+    char fileNam [TEXTOSLINK];*/
 
 
         strcat(buffer,"<html lang='en'><head><meta charset='utf-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'>"

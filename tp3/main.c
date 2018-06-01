@@ -27,14 +27,11 @@ int main()
     int seguir=1;
     int opcion;
     int flagPelis=0;
-    char guardar;
     int contador=0;
     char salir;
-    int flagHtml=0;
 
     EMovie peliculas [CANTPELIS];
-    EMovie pelicula;
-/////////////////
+  /////////////////
     indiceUsuarios(peliculas, CANTPELIS);
 
     if(cargarDesdeArchivo(peliculas, CANTPELIS))
@@ -113,6 +110,7 @@ int main()
                     printf("No hay nuevo ingresos sin guardar\n");
                     printf("-------------------------------\n");
                    }
+                   cleanScreen();
                break;
         case 6:
             listarTodo(peliculas, CANTPELIS);

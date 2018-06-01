@@ -139,7 +139,7 @@
 	"peliculas.h"
 	"lib.h"
 
-1527882056 source:c:\users\usuario\desktop\01-06\tp_laboratorio_1\tp3\lib.c
+1527883932 source:c:\users\usuario\desktop\01-06\tp_laboratorio_1\tp3\lib.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -150,9 +150,9 @@
 
 1527882724 c:\users\usuario\desktop\01-06\tp_laboratorio_1\tp3\peliculas.h
 
-1527878144 c:\users\usuario\desktop\01-06\tp_laboratorio_1\tp3\lib.h
+1527883659 c:\users\usuario\desktop\01-06\tp_laboratorio_1\tp3\lib.h
 
-1527881873 source:c:\users\usuario\desktop\01-06\tp_laboratorio_1\tp3\main.c
+1527884012 source:c:\users\usuario\desktop\01-06\tp_laboratorio_1\tp3\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -160,7 +160,7 @@
 	"peliculas.h"
 	"lib.h"
 
-1527881873 source:c:\users\usuario\desktop\01-06\tp_laboratorio_1\tp3\peliculas.c
+1527883861 source:c:\users\usuario\desktop\01-06\tp_laboratorio_1\tp3\peliculas.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
