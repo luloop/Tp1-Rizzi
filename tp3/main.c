@@ -93,7 +93,8 @@ int main()
         case 4:
             if (contador>0 || flagPelis!=0)
                 {
-                 flagHtml=htmlArmado(peliculas, CANTPELIS);
+                 flagPelis=htmlArmado(peliculas, CANTPELIS);
+                 flagPelis=htmlLISTADO(peliculas, CANTPELIS);
                 }
             else
                 {

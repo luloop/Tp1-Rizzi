@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <time.h>
 
 #include "peliculas.h"
 #include "lib.h"
@@ -70,7 +71,6 @@ int guardarEnArchivo(EMovie peliculas [], int cantidad)
  {
 	FILE *pelis;
 	int i=0;
-	int j;
 
 		pelis=fopen("BaseDePeliculas.data","wb");
 		if(pelis== NULL)
@@ -215,7 +215,6 @@ void pedirTitulo (EMovie peliculas[], int posicion, int cantTexto)
     char titulo [100];
     char auxtitulo [20];
     int i;
-    int flag =0;
 
     printf("\n \nIngrese El Titulo\t");
     fflush(stdin);
