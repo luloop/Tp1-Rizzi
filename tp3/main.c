@@ -18,7 +18,8 @@
 #include "peliculas.h"
 #include "lib.h"
 
-#define CANTPELIS 20
+#define CANTPELIS 10
+
 
 
 int main()
@@ -54,6 +55,8 @@ int main()
         printf("3- Modificar \n");
         printf("4- Generar pagina web\n");
         printf("5- Guardar\n");
+        printf("6- Listar Todo\n");
+        printf("7- Poner todos disponobles\n");
         printf("0- Salir");
         printf("\n-----------------------------\n\t Ingrese la Opcion: ");
 
@@ -94,12 +97,12 @@ int main()
                 }
             else
                 {
-                     printf("\n\nNO HAY PELICULAS DISPONIBLES EN EL ARCHIVO ORIGINAL\n");
+                printf("\n\nNO HAY PELICULAS DISPONIBLES EN EL ARCHIVO ORIGINAL\n");
                 }
             cleanScreen();
             break;
         case 5:
-                if (contador>0 || flagPelis!=0)
+                if (flagPelis!=0)
                    {
                    flagPelis=guardarArchivoABM(peliculas, CANTPELIS);
                    }
@@ -111,16 +114,16 @@ int main()
                    }
                break;
         case 6:
-            listarPeliculas(peliculas, CANTPELIS, 1);
-            printf("\n-------------------------------\n");
-                    printf("estado 2\n");
-            listarPeliculas(peliculas, CANTPELIS,2);
-             printf("\n-------------------------------\n");
-                    printf("estado 0\n");
-            listarPeliculas(peliculas, CANTPELIS, 0);
+            listarTodo(peliculas, CANTPELIS);
+            cleanScreen();
+          break;
+          case 7:
+            indiceUsuarios(peliculas, CANTPELIS);
+            flagPelis=1;
+            cleanScreen();
           break;
         case 0:
-               if (contador>0 || flagPelis!=0)
+               if (flagPelis!=0)
                {
                 printf("\n-------------------------------\n");
                 salir=preguntarSiNo("Dese Guardar antes de salir?");
@@ -133,9 +136,7 @@ int main()
                         }
                         else
                         {
-						printf("\n-------------------------------\n");
-						printf("\nSe guardo la informacion con exito\n");
-						printf("\n-------------------------------\n");
+                        printf("-------------------------------\n");
                         printf("Chau\n");
                         printf("-------------------------------\n");
 					    seguir =0;

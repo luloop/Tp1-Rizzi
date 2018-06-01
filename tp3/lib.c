@@ -79,11 +79,14 @@ int guardarEnArchivo(EMovie peliculas [], int cantidad)
 		}
         else
         {
-        while(i<=cantidad)
+        while(i!=cantidad)
         {
             fwrite(&peliculas[i] ,sizeof(EMovie),1,pelis);
             i++;
         }
+						printf("\n-------------------------------\n");
+						printf("\nSe guardo la informacion con exito\n");
+						printf("\n-------------------------------\n");
 
         }
 
