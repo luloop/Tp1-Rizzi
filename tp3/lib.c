@@ -227,7 +227,7 @@ int contadorArray (EMovie peliculas [], int tamanio)
  */
 void pedirTitulo (EMovie peliculas[], int posicion, int cantTexto)
 {
-    char titulo [100];
+    char titulo [50];
     char auxtitulo [20];
     int i;
 
@@ -236,6 +236,7 @@ void pedirTitulo (EMovie peliculas[], int posicion, int cantTexto)
     gets (titulo);
         for (i=0; i<cantTexto; i++)
         {
+
             auxtitulo[i]=titulo[i];
         }
     strcpy(peliculas[posicion].titulo, auxtitulo);

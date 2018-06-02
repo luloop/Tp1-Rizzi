@@ -168,7 +168,7 @@ char confirm;
 void mostrarPeliculaIndividual(EMovie peli)
 {
  printf("\n------------------------------------------\n");
- printf("\nId:\t\t%d \nTitulo:\t\t%8s \nGenero:\t\t%5s \n"
+ printf("\nId:\t\t%d \nTitulo:\t\t%08s \nGenero:\t\t%05s \n"
         "Duracion:\t%d \nDescripcion\t%20s\nPuntaje:\t%0.2f\nUrl Imagen:\t%s "
         "\n eEstaDo: %d" , peli.idPelicula,peli.titulo,peli.genero, peli.duracion,peli.descripcion, peli.puntaje, peli.linkImagen,peli.estado);
          printf("\n------------------------------------------\n");
@@ -184,7 +184,7 @@ void mostrarPeliculaIndividual(EMovie peli)
  */
 void mostrarUnaPeliculaParaListado(EMovie peli)
 {
- printf("\n%d\t%08s   %s\t%d\t\t%0.2f\t\t %d" , peli.idPelicula,peli.titulo,peli.genero, peli.duracion, peli.puntaje,peli.estado);
+ printf("\n%d\t%10s\t%s\t%d\t\t%0.2f\t\t %d" , peli.idPelicula,peli.titulo,peli.genero, peli.duracion, peli.puntaje,peli.estado);
 }
 
 
@@ -202,7 +202,7 @@ void listarPeliculas(EMovie peliculass[], int tamanio, int estado)
 
       printf("\n-----------------------\n LISTADO DE PELICULAS\n-----------------------\n ");
 
-            printf("\n  Id   Titulo\t      Genero\t    Duracion\t  Puntaje\tEstado");
+            printf("\nId     Titulo\t      Genero\tDuracion\tPuntaje\t     Estado");
 
 
                 for (i=0; i<tamanio; i++)
@@ -588,7 +588,7 @@ int htmlLISTADO(EMovie peliculass[],int tamanio)
 
     fprintf(archivo,buffer);
         printf("\n-----------------------------\n");
-        printf(" pelicula %s en html\t", peliculass[i].nombreArchivo);
+       // printf(" pelicula %s en html\t", peliculass[i].nombreArchivo);
         printf("\n-----------------------------\n");
 
     fclose(archivo);

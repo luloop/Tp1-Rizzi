@@ -55,7 +55,20 @@
 	"peliculas.h"
 	"lib.h"
 
-1527809672 source:c:\users\lucil\desktop\tp_laboratorio_1\tp3\lib.c
+1527896927 source:c:\users\lucil\desktop\tp_laboratorio_1\tp3\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	<time.h>
+	"peliculas.h"
+	"lib.h"
+
+1527894333 c:\users\lucil\desktop\tp_laboratorio_1\tp3\peliculas.h
+
+1527894333 c:\users\lucil\desktop\tp_laboratorio_1\tp3\lib.h
+
+1527895601 source:c:\users\lucil\desktop\tp_laboratorio_1\tp3\peliculas.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -63,19 +76,7 @@
 	"peliculas.h"
 	"lib.h"
 
-1527807745 c:\users\lucil\desktop\tp_laboratorio_1\tp3\peliculas.h
-
-1527807745 c:\users\lucil\desktop\tp_laboratorio_1\tp3\lib.h
-
-1527815142 source:c:\users\lucil\desktop\tp_laboratorio_1\tp3\peliculas.c
-	<stdio.h>
-	<stdlib.h>
-	<ctype.h>
-	<string.h>
-	"peliculas.h"
-	"lib.h"
-
-1527815142 source:c:\users\lucil\desktop\tp_laboratorio_1\tp3\main.c
+1527894333 source:c:\users\lucil\desktop\tp_laboratorio_1\tp3\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
