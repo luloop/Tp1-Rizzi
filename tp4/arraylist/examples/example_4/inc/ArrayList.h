@@ -20,7 +20,7 @@
 #define __ARRAYLIST
 struct ArrayList{
 
-    void** pElements;
+    void** pElements; // que es bien esto
     int size;
     int reservedSize;
 

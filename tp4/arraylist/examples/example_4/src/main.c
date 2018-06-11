@@ -29,7 +29,7 @@
 int main(void)
 {
         startTesting(1);
-     / startTesting(2); //add
+        startTesting(2); //add
         startTesting(3); //deleteArrayList okok
         startTesting(4);//len
         startTesting(5); //get
