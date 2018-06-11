@@ -24,22 +24,26 @@
 #include "../inc/ArrayList.h"
 #include "../inc/Employee.h"
 
+/////////////////////////////////////
+//11-06 PEDIR VER LOS CODIGO DE CONTRACT T EXPAND Y REZISE DOWN
 
+
+///////////////////////////////
 
 int main(void)
 {
-        startTesting(1);
-        startTesting(2); //add
-        startTesting(3); //deleteArrayList okok
+       startTesting(1);
+      startTesting(2); //add
+      startTesting(3); //deleteArrayList okok
         startTesting(4);//len
         startTesting(5); //get
         startTesting(6);//contains
         startTesting(7);//set
-        startTesting(8);//remove
-         /*   startTesting(9);//clear
-        startTesting(10);
-        startTesting(11);
-        startTesting(12);
+      startTesting(8);//remove
+      startTesting(9);//clear
+      startTesting(10); //clone
+        startTesting(11); //PUSH
+      /*   startTesting(12);
         startTesting(13);
         startTesting(14);
         startTesting(15);
