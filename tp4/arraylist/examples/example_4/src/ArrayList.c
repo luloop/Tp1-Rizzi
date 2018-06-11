@@ -21,12 +21,12 @@ ArrayList* al_newArrayList(void)
 {
     ArrayList* this;
     ArrayList* returnAux = NULL;
-    void* pElements;
-    this = (ArrayList *)malloc(sizeof(ArrayList));
+    void** pElements;
+    this = (ArrayList *)malloc(sizeof(ArrayList));//pido espacio para el array una sola vez
 
     if(this != NULL)
     {
-        pElements = malloc(sizeof(void *)*AL_INITIAL_VALUE );
+        pElements = malloc(sizeof(void *)*AL_INITIAL_VALUE );//pido espacio para los datos, pElements
         if(pElements != NULL)
         {
             this->size=0;
@@ -70,29 +70,37 @@ ArrayList* al_newArrayList(void)
 int al_add(ArrayList* this, void* pElement)
 {
   int returnAux = -1;
-  int flag=0;
+  int flag=1;
 
     if(this!=NULL && pElement!=NULL)
     {
-        if(al_len(this)>=this->reservedSize)
+        if(this->size==this->reservedSize)
         {
-            resizeUp(this);
-
-            if(this!=NULL)
+           if(resizeUp(this))//creo el nuevo espacio de memoria
             {
+               *(this->pElements+this->size)=pElement;//si funciona lo ubico en el 2do puntero
+               this->size++;//aumento el size
                returnAux=0;
             }
-            else
+          else
             {
-            flag=1;
+            flag=0;
             }
         }
-    }
-      if(flag==0)
-       {
+
+        if(flag==1)
+        {
+       *(this->pElements+this->size)=pElement;// si no necesita mas espacio lo asigno directo
         this->size++;
         returnAux=0;
-       }
+        }
+        else
+        {
+        *(this->pElements+this->size)=pElement;
+        returnAux=0;
+        }
+
+    }
 
     return returnAux;
 }
@@ -141,7 +149,14 @@ int al_len(ArrayList* this)
 void* al_get(ArrayList* this, int index)
 {
     void* returnAux = NULL;
+    if (this!=NULL)
+        {
+            if(index<this->size)
+            {
+            returnAux=(this->pElements+index);
+            }
 
+        }
     return returnAux;
 }
 
@@ -340,21 +355,20 @@ int resizeUp(ArrayList* this)
 {
     int returnAux = -1;
     int auxsize;
+    void** aux;
+
     if (this!=NULL)
     {
      auxsize=this->reservedSize+AL_INCREMENT;
-     this=(ArrayList*)realloc(this, sizeof(ArrayList*)*auxsize);
-
-         if (this!=NULL)
+     aux=(void**)realloc(this->pElements, sizeof(void*)*auxsize);
+         if (aux!=NULL)
          {
+            this->pElements=aux;
             this->reservedSize=auxsize;
             returnAux=0;
          }
     }
-
-
     return returnAux;
-
 }
 
 /** \brief  Expand an array list
