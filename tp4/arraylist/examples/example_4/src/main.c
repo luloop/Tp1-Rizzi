@@ -33,10 +33,10 @@ int main(void)
         startTesting(3); //deleteArrayList okok
         startTesting(4);//len
         startTesting(5); //get
-         /*  startTesting(6);//contains
+        startTesting(6);//contains
         startTesting(7);//set
         startTesting(8);//remove
-        startTesting(9);//clear
+         /*   startTesting(9);//clear
         startTesting(10);
         startTesting(11);
         startTesting(12);

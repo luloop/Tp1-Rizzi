@@ -153,7 +153,7 @@ void* al_get(ArrayList* this, int index)
         {
             if(index<this->size)
             {
-            returnAux=(this->pElements+index);
+            returnAux=*(this->pElements+index);
             }
 
         }
@@ -172,7 +172,25 @@ void* al_get(ArrayList* this, int index)
 int al_contains(ArrayList* this, void* pElement)
 {
     int returnAux = -1;
+    int i;
+    int flag=0;
+    if (this!=NULL && pElement!=NULL)
+        {
+           for (i=0; i<this->reservedSize; i++)
+           {
+               if(pElement==*(this->pElements+i))
+               {
+                   returnAux =1;
+                   flag=1;
+                   break;
+               }
+           }
+           if (flag==0)
+           {
+               returnAux=0;
+           }
 
+        }
     return returnAux;
 }
 
@@ -188,6 +206,17 @@ int al_contains(ArrayList* this, void* pElement)
 int al_set(ArrayList* this, int index,void* pElement)
 {
     int returnAux = -1;
+    int i;
+
+    if (this!=NULL && pElement!=NULL)
+        {
+           if(index<this->size)
+            {
+            *(this->pElements+index)=pElement;
+            returnAux=0;
+            }
+
+        }
 
     return returnAux;
 }
@@ -202,11 +231,36 @@ int al_set(ArrayList* this, int index,void* pElement)
 int al_remove(ArrayList* this,int index)
 {
     int returnAux = -1;
+    int aux;
+    int i;
     if (this!=NULL)
     {
+        {
+           if(index < this->size)
+            {
+            aux=this->reservedSize-(this->reservedSize-this->size);
+            for(i=index; i<aux; i++)
+            {
+                this->pElements[i]=this->pElements[i+1];
+            }
 
-    }
+            this->size--;
+            returnAux=0;
 
+
+             /*
+              if (this->reservedSize<this->size)
+                {
+
+                }
+             */
+
+            }
+
+
+            }
+
+        }
     return returnAux;
 }
 
@@ -396,3 +450,5 @@ int contract(ArrayList* this,int index)
 
     return returnAux;
 }
+
+
