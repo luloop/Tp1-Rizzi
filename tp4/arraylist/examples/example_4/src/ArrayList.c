@@ -314,38 +314,31 @@ int al_push(ArrayList* this, int index, void* pElement)
     int flag=0;
     int i;
 
-
     if(this!=NULL && pElement!=NULL )
     {
+       printf("NULL------index :%d--------size: %d\n", index, this->size);
+
         if (index>=0 && index<=this->size)
         {
-
-            if(this->size==this->reservedSize)//si el size es igual al espacio reservado
+            printf("INDEX------index :%d--------size: %d\n", index, this->size);
+            if (index<this->size)
             {
-                if(resizeUp(this))//creo el nuevo espacio de memoria
+                if (expand(this,index)==0)
                 {
-                    flag=1;//hay lugar
+                    printf("EXPAND------index :%d--------size: %d\n", index, this->size);
+                    returnAux= al_set(this, index, pElement);
+                    this->size++;
                 }
             }
             else
             {
-                flag= 1; //hay lugar
-            }
-
-            if (index<this->size && flag==1)
-            {
-                expand(this, index);
-                returnAux= al_set(this, index, pElement);
-                this->size++;
-            }
-
-            if (index==this->size && flag==1)
-            {
+                printf("IGUALES------index :%d--------size: %d\n", index, this->size);
                 returnAux= al_add(this, pElement);
             }
 
-        } //if NULLS
-    }//if index
+        }//if index>=0 && index<=this->size
+
+    }//if NULLS
 
     return returnAux;
 }
@@ -444,21 +437,29 @@ int al_sort(ArrayList* this, int (*pFunc)(void*,void*), int order)
  */
 int resizeUp(ArrayList* this)
 {
-    int returnAux = -1;
+    int returnAux = 0;
     int auxsize;
     void** aux;
 
     if (this!=NULL)
     {
-        auxsize=this->reservedSize+AL_INCREMENT;
-        aux=(void**)realloc(this->pElements, sizeof(void*)*auxsize);
-        if (aux!=NULL)
+        if(this->size==this->reservedSize)//si el size es igual al espacio reservado
         {
-            this->pElements=aux;
-            this->reservedSize=auxsize;
-            returnAux=0;
+            auxsize=this->reservedSize+AL_INCREMENT;
+            aux=(void**)realloc(this->pElements, sizeof(void*)*auxsize);
+            if (aux!=NULL)
+            {
+                this->pElements=aux;
+                this->reservedSize=auxsize;
+                returnAux=0;
+            }
         }
+
     }
+      else
+        {
+                returnAux=-1;
+        }
     return returnAux;
 }
 
@@ -477,15 +478,18 @@ int expand(ArrayList* this,int index)
 
     if (this!=NULL)
     {
-        if(index<this->size )
+        if (resizeUp(this)==0);//creo el nuevo espacio de memoria
         {
-
-            for(i=index; i<aux; i++)
+            if(index<this->size )
             {
-                this->pElements[i+1]=this->pElements[i];
-                flag=1;
+                for(i=index; i<this->size+AL_INCREMENT; i++)
+                {
+                    this->pElements[i+1]=this->pElements[i];
+                    flag=1;
+                }
+                returnAux=0;
             }
-            returnAux=0;
+
         }
 
     }
