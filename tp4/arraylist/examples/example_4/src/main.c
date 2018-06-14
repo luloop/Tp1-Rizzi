@@ -41,15 +41,14 @@ int main(void)
       startTesting(7);//set
       startTesting(8);//remove
       startTesting(9);//clear
-      startTesting(10); //clone
+      startTesting(10); //clone*/
       startTesting(11); //PUSH
-      /*   startTesting(12);
-        startTesting(13);
-        startTesting(14);
-        startTesting(15);
-        startTesting(16);
-        startTesting(17);*/
-
+      startTesting(12); // indexOF
+      startTesting(13); //isEmpety
+      startTesting(14); //pop
+      startTesting(15); //sublist
+      startTesting(16);
+      startTesting(17);
     return 0;
 }
 

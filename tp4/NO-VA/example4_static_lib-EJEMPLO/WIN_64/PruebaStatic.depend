@@ -72,3 +72,19 @@
 
 1528803230 c:\test\rizzi\12-06-18\tp_laboratorio_1\tp4\no-va\example4_static_lib-ejemplo\win_64\arraylist.h
 
+1528818334 source:c:\users\usuario\desktop\12-06\tp4-al\no-va\example4_static_lib-ejemplo\win_64\employee.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Employee.h"
+
+1528818334 c:\users\usuario\desktop\12-06\tp4-al\no-va\example4_static_lib-ejemplo\win_64\employee.h
+
+1528818334 source:c:\users\usuario\desktop\12-06\tp4-al\no-va\example4_static_lib-ejemplo\win_64\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"Employee.h"
+
+1528818334 c:\users\usuario\desktop\12-06\tp4-al\no-va\example4_static_lib-ejemplo\win_64\arraylist.h
+
