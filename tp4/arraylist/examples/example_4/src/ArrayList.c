@@ -116,6 +116,7 @@ int al_deleteArrayList(ArrayList* this)
 
     if (this!=NULL)
     {
+        free(*this->pElements);
         free(this);
         returnAux=0;
     }
@@ -210,7 +211,7 @@ int al_set(ArrayList* this, int index,void* pElement)
 
     if (this!=NULL && pElement!=NULL)
     {
-        if(index<this->size & index>=0)
+        if((index<this->size) & (index>=0))
         {
             *(this->pElements+index)=pElement;
             returnAux=0;
@@ -516,13 +517,12 @@ int al_sort(ArrayList* this, int (*pFunc)(void*,void*), int order)
     int returnAux = -1;
     int i;
     int j;
-    int* auxiliar;
+    void* auxiliar;
     int contador=0;
 
     if(this!=NULL&& pFunc!=NULL && (order==0 || order==1))
     {
-         auxiliar=(void*)malloc(sizeof(int));
-        if (auxiliar !=NULL)
+       if (auxiliar !=NULL)
         {
             for(i=0; i<this->size-1; i++)
             {
